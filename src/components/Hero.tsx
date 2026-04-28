@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function Hero() {
+type HeroProps = {
+  title?: string;
+  description?: string;
+};
+
+export default function Hero({ title, description }: HeroProps) {
   return (
     <section className="bg-[#f7f2e8] px-6 py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
@@ -12,13 +17,12 @@ export default function Hero() {
           </p>
 
           <h1 className="mt-4 text-4xl font-black leading-[1.05] tracking-tight text-neutral-950 md:text-6xl">
-            Turn any text into a printable editing worksheet.
+            {title ?? "Turn any text into a printable editing worksheet."}
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-neutral-700">
-            Paste a passage or upload a PDF, choose the grade level, and create
-            student worksheets with realistic spelling, grammar, punctuation,
-            and capitalization errors—ready to print with answer keys.
+            {description ??
+              "Paste a passage or upload a PDF, choose the grade level, and create student worksheets with realistic spelling, grammar, punctuation, and capitalization errors—ready to print with answer keys."}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -28,10 +32,11 @@ export default function Hero() {
             >
               Create a Worksheet
             </Link>
+
             <Link href="/login">Sign up to save PDF credits</Link>
 
             <Link
-              href="/5th-grade-editing-passages"
+              href="/seo/5th-grade-editing-passages"
               className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
             >
               See example worksheets

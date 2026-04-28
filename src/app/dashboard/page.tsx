@@ -3,7 +3,11 @@ import { createClient } from "@/lib/supabase/server";
 import BuyCredits from "@/components/BuyCredits";
 import Link from "next/link";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: { from?: string };
+}) {
   const supabase = await createClient();
 
   const {
@@ -18,9 +22,24 @@ export default async function DashboardPage() {
     .eq("id", user.id)
     .single();
 
+  const from = searchParams?.from;
+
   return (
     <main className="min-h-screen bg-[#f7f2e8] px-6 py-20 text-neutral-950">
       <div className="mx-auto max-w-5xl">
+
+        {/* 🔹 ADDED BACK LINK */}
+        {from && (
+          <div className="mb-6">
+            <Link
+              href={from}
+              className="text-sm font-semibold text-neutral-600 underline underline-offset-4 hover:text-neutral-950"
+            >
+              ← Back to where you were
+            </Link>
+          </div>
+        )}
+
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-emerald-700">
@@ -36,12 +55,12 @@ export default async function DashboardPage() {
             </p>
           </div>
 
-          <Link
-            href="/"
-            className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-bold text-white"
-          >
-            Create Worksheet
-          </Link>
+        <Link
+  href="/"
+  className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-bold text-white"
+>
+  Back to Worksheet Tool
+</Link>
         </div>
 
         <section className="mt-10 rounded-3xl bg-white p-8 shadow-xl">

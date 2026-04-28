@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { seoPages } from "@/data/SeoPages";
+import { seoPages } from "@/data/seo-pages";
 
 type Props = {
   related: string[];
