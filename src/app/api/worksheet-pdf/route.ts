@@ -60,12 +60,16 @@ if (profile.pdf_credits <= 0) {
       );
     }
     const pdfBytes = await createWorksheetPdf(worksheet);
-await supabase
-  .from("profiles")
-  .update({
-    pdf_credits: profile.pdf_credits - 1,
-  })
-  .eq("id", user.id);
+const { data: creditUsed, error: creditError } = await supabase.rpc(
+  "use_pdf_credit",
+  {
+    user_id: user.id,
+  }
+);
+
+if (creditError || !creditUsed) {
+  return new Response("NO_CREDITS", { status: 402 });
+}
     return new NextResponse(new Uint8Array(pdfBytes), {
       status: 200,
       headers: {
