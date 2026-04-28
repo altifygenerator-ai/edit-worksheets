@@ -185,4 +185,123 @@ export const seoPages: Record<string, SeoPage> = {
     "sentence-correction-exercises",
   ],
 },
+"editing-worksheets-with-answer-key": {
+  title: "Editing Worksheets with Answer Key",
+  description:
+    "Create printable editing worksheets with answer keys for grammar, punctuation, spelling, and capitalization practice.",
+  heading: "Editing Worksheets with Answer Key",
+  intro:
+    "Generate classroom-ready editing worksheets where students correct mistakes and teachers get a clean answer key for quick grading.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "the class was excited to start there writing project on monday.",
+    "Each student have to correct the paragraph before turning it in.",
+    "We read the passage carefully but forgot to check our punctuation",
+    "My teacher said that revising and editing is both important parts of writing.",
+    "The answer key help students see what mistakes they missed.",
+  ],
+  related: [
+    "5th-grade-editing-passages",
+    "sentence-correction-exercises",
+    "daily-editing-practice",
+  ],
+},
+
+"printable-editing-worksheets": {
+  title: "Printable Editing Worksheets",
+  description:
+    "Make printable editing worksheets from your own text with realistic writing errors and clean PDF downloads.",
+  heading: "Printable Editing Worksheets",
+  intro:
+    "Turn any passage into a printable worksheet students can mark up by hand, making it useful for bell work, homework, writing centers, or quick review.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "students should check there work before they turn it in.",
+    "The worksheet was printed and passed out before class started",
+    "We corrected spelling grammar and punctuation mistakes together.",
+    "My class likes when the practice sentences are short and clear.",
+    "The teacher gave us five minutes to edit the paragraph.",
+  ],
+  related: [
+    "editing-worksheets-with-answer-key",
+    "paragraph-editing-practice",
+    "daily-editing-practice",
+  ],
+},
+
+"paragraph-editing-practice": {
+  title: "Paragraph Editing Practice",
+  description:
+    "Create paragraph editing practice with grammar, punctuation, capitalization, and spelling errors for students to correct.",
+  heading: "Paragraph Editing Practice",
+  intro:
+    "Use paragraph editing practice to help students move beyond single sentences and learn how to revise full pieces of writing for clarity and correctness.",
+  gradeLevel: "upper elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "Last weekend my family went camping by the lake we cooked dinner outside and watched the stars.",
+    "The students worked on there science project, but they forgot to label the chart correctly.",
+    "When the rain started falling everyone runned inside the school building.",
+    "Our teacher asked us to read the paragraph carefully and circle each mistake",
+    "Editing a full paragraph help students understand how sentences work together.",
+  ],
+  related: [
+    "sentence-correction-exercises",
+    "middle-school-editing-passages",
+    "editing-worksheets-with-answer-key",
+  ],
+},
+
+"proofreading-practice-worksheets": {
+  title: "Proofreading Practice Worksheets",
+  description:
+    "Generate proofreading practice worksheets that help students find and fix grammar, spelling, punctuation, and capitalization mistakes.",
+  heading: "Proofreading Practice Worksheets",
+  intro:
+    "Give students focused proofreading practice so they can slow down, read carefully, and catch common mistakes before final drafts are turned in.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "Proofreading help writers find mistakes before someone else reads there work.",
+    "I checked my story for spelling errors but I forgot punctuation.",
+    "The students was asked to proofread the paragraph with a partner.",
+    "Before printing the report, we looked for missing commas and capital letters.",
+    "A good writer always reread their work before turning it in.",
+  ],
+  related: [
+    "paragraph-editing-practice",
+    "grammar-correction-exercises",
+    "punctuation-correction-worksheet",
+  ],
+},
+
+"comma-practice-worksheets": {
+  title: "Comma Practice Worksheets",
+  description:
+    "Create comma practice worksheets with missing commas, extra commas, list commas, and introductory phrase errors.",
+  heading: "Comma Practice Worksheets",
+  intro:
+    "Help students practice comma rules in a simple, practical way by generating sentences and short passages with realistic comma mistakes.",
+  gradeLevel: "upper elementary and middle school",
+  errorAmount: "low",
+  errorTypes: "punctuation",
+  examples: [
+    "After lunch we went outside for recess.",
+    "I packed pencils notebooks folders and a calculator in my backpack.",
+    "Yes I would like to join the reading group.",
+    "Because the road was closed we had to take a different way home.",
+    "The dog barked loudly but the cat stayed asleep.",
+  ],
+  related: [
+    "punctuation-correction-worksheet",
+    "sentence-correction-exercises",
+    "capitalization-worksheets",
+  ],
+},
 };
