@@ -36,6 +36,16 @@ export async function POST(req: NextRequest) {
 
   try {
     if (event.type === "checkout.session.completed") {
+      const { error: eventInsertError } = await supabaseAdmin
+        .from("stripe_events")
+        .insert({
+          id: event.id,
+        });
+
+      if (eventInsertError) {
+        return NextResponse.json({ received: true });
+      }
+
       const session = event.data.object as Stripe.Checkout.Session;
 
       const userId = session.metadata?.user_id;
