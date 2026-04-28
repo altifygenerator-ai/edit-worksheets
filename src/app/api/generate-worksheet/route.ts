@@ -1,5 +1,4 @@
-const usageMap = new Map<string, number>();
-const MAX_FREE_USES = 15;
+
 
 export async function POST(req: Request) {
   try {
@@ -7,18 +6,6 @@ export async function POST(req: Request) {
       req.headers.get("x-forwarded-for")?.split(",")[0] ||
       req.headers.get("x-real-ip") ||
       "unknown";
-
-    const isPaid = req.headers.get("x-paid-user") === "true";
-
-    if (!isPaid) {
-      const currentUses = usageMap.get(ip) || 0;
-
-      if (currentUses >= MAX_FREE_USES) {
-        return Response.json({ error: "Free limit reached" }, { status: 403 });
-      }
-
-      usageMap.set(ip, currentUses + 1);
-    }
 
     const {
       text,

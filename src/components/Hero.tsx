@@ -28,6 +28,7 @@ export default function Hero() {
             >
               Create a Worksheet
             </Link>
+            <Link href="/login">Sign up to save PDF credits</Link>
 
             <Link
               href="/5th-grade-editing-passages"

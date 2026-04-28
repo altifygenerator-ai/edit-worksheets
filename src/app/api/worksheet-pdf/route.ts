@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-
+import { createClient } from "@/lib/supabase/server";
 export const runtime = "nodejs";
 
 type WorksheetError = {
@@ -20,17 +20,52 @@ type WorksheetData = {
 
 export async function POST(req: NextRequest) {
   try {
-    const worksheet = (await req.json()) as WorksheetData;
+    const supabase = await createClient();
 
+const {
+  data: { user },
+} = await supabase.auth.getUser();
+
+if (!user) {
+  return NextResponse.json(
+    { error: "LOGIN_REQUIRED" },
+    { status: 401 }
+  );
+}
+
+const { data: profile, error: profileError } = await supabase
+  .from("profiles")
+  .select("pdf_credits")
+  .eq("id", user.id)
+  .single();
+
+if (profileError || !profile) {
+  return NextResponse.json(
+    { error: "Profile not found" },
+    { status: 404 }
+  );
+}
+
+if (profile.pdf_credits <= 0) {
+  return NextResponse.json(
+    { error: "NO_CREDITS" },
+    { status: 402 }
+  );
+}
+    const worksheet = (await req.json()) as WorksheetData;
     if (!worksheet || !worksheet.studentText) {
       return NextResponse.json(
         { error: "Missing worksheet data" },
         { status: 400 }
       );
     }
-
     const pdfBytes = await createWorksheetPdf(worksheet);
-
+await supabase
+  .from("profiles")
+  .update({
+    pdf_credits: profile.pdf_credits - 1,
+  })
+  .eq("id", user.id);
     return new NextResponse(new Uint8Array(pdfBytes), {
       status: 200,
       headers: {

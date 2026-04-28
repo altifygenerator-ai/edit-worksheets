@@ -11,9 +11,16 @@ export default function Header() {
         <nav className="flex items-center gap-5 text-sm font-medium text-neutral-700">
           <Link href="/5th-grade-editing-passages">Examples</Link>
           <Link href="/sentence-correction-exercises">Practice</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link
+            href="/login"
+            className="rounded-full border border-neutral-300 px-4 py-2 font-bold"
+          >
+            Sign in
+          </Link>
           <Link
             href="/#tool"
-            className="rounded-full bg-neutral-950 px-4 py-2 text-white"
+            className="rounded-full bg-neutral-950 px-4 py-2 font-bold text-white"
           >
             Create Worksheet
           </Link>
