@@ -29,6 +29,11 @@ export default function Header() {
     return () => subscription.unsubscribe();
   }, []);
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/";
+  };
+
   return (
     <header className="border-b border-neutral-200 bg-white px-6 py-4">
       <div className="mx-auto flex max-w-6xl items-center justify-between">
@@ -49,6 +54,14 @@ export default function Header() {
               >
                 Dashboard
               </Link>
+
+              {/* SIGN OUT BUTTON */}
+              <button
+                onClick={handleSignOut}
+                className="text-sm font-semibold text-neutral-600 underline underline-offset-4 hover:text-neutral-950"
+              >
+                Sign out
+              </button>
             </>
           ) : (
             <Link
