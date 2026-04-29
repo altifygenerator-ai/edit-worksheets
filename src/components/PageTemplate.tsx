@@ -13,6 +13,9 @@ type PageTemplateProps = {
   description: string;
   heading: string;
   intro: string;
+  gradeLevel?: string;
+  errorAmount?: string;
+  errorTypes?: string;
   examples?: string[];
 };
 
@@ -21,6 +24,9 @@ export default function PageTemplate({
   description,
   heading,
   intro,
+  gradeLevel,
+  errorAmount,
+  errorTypes,
   examples = [],
 }: PageTemplateProps) {
   return (
@@ -30,7 +36,11 @@ export default function PageTemplate({
       <main>
         <Hero title={heading} description={intro} />
 
-        <WorksheetTool />
+        <WorksheetTool
+  defaultGradeLevel={gradeLevel}
+  defaultErrorAmount={errorAmount}
+  defaultErrorTypes={errorTypes}
+/>
 
         {examples.length > 0 && (
           <section className="bg-white px-6 py-20 text-neutral-950">

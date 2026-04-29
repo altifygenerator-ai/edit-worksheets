@@ -26,6 +26,9 @@ export default async function SeoPage({ params }: PageProps) {
       description={page.description}
       heading={page.heading}
       intro={page.intro}
+      gradeLevel={page.gradeLevel}
+      errorAmount={page.errorAmount}
+      errorTypes={page.errorTypes}
       examples={page.examples}
     />
   );
