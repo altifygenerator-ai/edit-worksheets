@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://editworksheets.org"),
 
   verification: {
-    google: "5y-62wLg0SUv41YcFBP_4MEIRwruudOrbLLSYE9dcPM",
+    google: "CBONwd-NnD_mK65m5YowAQgXYkpyOiIFPKPNaxxIXuk",
   },
 };
 
