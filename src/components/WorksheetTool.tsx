@@ -1,7 +1,8 @@
 "use client";
+
 import DownloadButton from "@/components/DownloadButton";
 import CreditCounter from "@/components/CreditCounter";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type WorksheetError = {
   type?: string;
@@ -29,6 +30,8 @@ export default function WorksheetTool({
   defaultErrorAmount = "medium",
   defaultErrorTypes = "mixed",
 }: WorksheetToolProps) {
+  const previewRef = useRef<HTMLDivElement | null>(null);
+
   const [text, setText] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [gradeLevel, setGradeLevel] = useState(defaultGradeLevel);
@@ -38,11 +41,24 @@ export default function WorksheetTool({
   const [loading, setLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [noCredits, setNoCredits] = useState(false);
   const [creditRefreshKey, setCreditRefreshKey] = useState(0);
+
+  function scrollToPreview() {
+    setTimeout(() => {
+      previewRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
+  }
 
   async function generateFromText() {
     setLoading(true);
     setError("");
+    setSuccess("");
+    setNoCredits(false);
     setWorksheet(null);
 
     try {
@@ -64,6 +80,8 @@ export default function WorksheetTool({
       if (!res.ok) throw new Error(data.error || "Failed to generate worksheet");
 
       setWorksheet(data.worksheet);
+      setSuccess("Generated successfully — review your worksheet below.");
+      scrollToPreview();
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -79,6 +97,8 @@ export default function WorksheetTool({
 
     setLoading(true);
     setError("");
+    setSuccess("");
+    setNoCredits(false);
     setWorksheet(null);
 
     try {
@@ -98,6 +118,8 @@ export default function WorksheetTool({
       if (!res.ok) throw new Error(data.error || "Failed to generate from PDF");
 
       setWorksheet(data.worksheet);
+      setSuccess("Generated successfully — review your worksheet below.");
+      scrollToPreview();
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -110,6 +132,8 @@ export default function WorksheetTool({
 
     setPdfLoading(true);
     setError("");
+    setSuccess("");
+    setNoCredits(false);
 
     try {
       const res = await fetch("/api/worksheet-pdf", {
@@ -121,7 +145,29 @@ export default function WorksheetTool({
       });
 
       if (!res.ok) {
-        const data = await res.json();
+        let data: any = {};
+
+        try {
+          data = await res.json();
+        } catch {
+          data = {};
+        }
+
+        if (res.status === 401) {
+          window.location.href = `/login?from=${encodeURIComponent(
+            window.location.pathname
+          )}`;
+          return;
+        }
+
+        if (res.status === 402) {
+          setNoCredits(true);
+          setError(
+            "You’re out of credits — grab more below to download your worksheet."
+          );
+          return;
+        }
+
         throw new Error(data.error || "Failed to generate PDF");
       }
 
@@ -135,6 +181,7 @@ export default function WorksheetTool({
 
       window.URL.revokeObjectURL(url);
       setCreditRefreshKey((prev) => prev + 1);
+      setSuccess("PDF ready — your download has started.");
     } catch (err: any) {
       setError(err.message || "PDF download failed");
     } finally {
@@ -158,6 +205,16 @@ export default function WorksheetTool({
             <p className="mt-3 text-neutral-600">
               Paste a passage or upload a PDF, then choose the grade level and
               error style.
+            </p>
+
+            <p className="mt-3 text-sm font-semibold text-neutral-800">
+              Generate for free — download clean printable PDFs with answer keys
+              using credits.
+            </p>
+
+            <p className="mt-1 text-sm text-neutral-500">
+              Use this daily for bell work, homework, writing centers, or quick
+              editing practice.
             </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -228,7 +285,7 @@ export default function WorksheetTool({
               disabled={loading || !text.trim()}
               className="mt-5 w-full rounded-2xl bg-neutral-950 px-6 py-4 font-bold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Generating..." : "Generate from Text"}
+              {loading ? "Generating worksheet..." : "Generate from Text"}
             </button>
 
             <div className="my-6 flex items-center gap-4">
@@ -237,87 +294,141 @@ export default function WorksheetTool({
               <div className="h-px flex-1 bg-neutral-200" />
             </div>
 
-           <label className="block rounded-2xl border border-dashed border-neutral-300 bg-[#f7f2e8] p-5">
-  <span className="text-sm font-semibold text-neutral-700">
-    Upload PDF
-  </span>
+            <label className="block rounded-2xl border border-dashed border-neutral-300 bg-[#f7f2e8] p-5">
+              <span className="text-sm font-semibold text-neutral-700">
+                Upload PDF
+              </span>
 
-  <p className="mt-2 text-sm leading-6 text-neutral-600">
-    Best results come from simple PDFs with normal text. Table-heavy documents
-    may not convert cleanly yet.
-  </p>
+              <p className="mt-2 text-sm leading-6 text-neutral-600">
+                Best results come from simple PDFs with normal text.
+                Table-heavy documents may not convert cleanly yet.
+              </p>
 
-  <input
-    type="file"
-    accept="application/pdf"
-    onChange={(e) => setFile(e.target.files?.[0] || null)}
-    className="mt-3 block w-full text-sm text-neutral-600"
-  />
+              <input
+                type="file"
+                accept="application/pdf"
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                className="mt-3 block w-full text-sm text-neutral-600"
+              />
 
-  {file && (
-    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
-      If the worksheet looks messy after upload, try copying the text from the
-      PDF and pasting it into the text box instead. That usually gives cleaner
-      results.
-    </div>
-  )}
-</label>
+              {file && (
+                <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+                  If the worksheet looks messy after upload, try copying the
+                  text from the PDF and pasting it into the text box instead.
+                  That usually gives cleaner results.
+                </div>
+              )}
+            </label>
 
             <button
               onClick={generateFromPdf}
               disabled={loading || !file}
               className="mt-5 w-full rounded-2xl border border-neutral-300 px-6 py-4 font-bold transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Generating..." : "Generate from PDF"}
+              {loading ? "Generating worksheet..." : "Generate from PDF"}
             </button>
+
+            {success && (
+              <p className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+                {success}
+              </p>
+            )}
 
             {error && (
               <p className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
                 {error}
               </p>
             )}
+
+            {noCredits && (
+              <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+                <p className="font-bold">You’re out of PDF credits.</p>
+                <p className="mt-1">
+                  You can still generate worksheets for free. Add credits on
+                  your dashboard when you want to download clean printable PDFs
+                  with answer keys.
+                </p>
+                <a
+                  href={`/dashboard?from=${encodeURIComponent(
+                    window.location.pathname
+                  )}`}
+                  className="mt-3 inline-flex rounded-full bg-neutral-950 px-4 py-2 text-xs font-bold text-white"
+                >
+                  Get PDF credits
+                </a>
+              </div>
+            )}
           </div>
 
-          <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f2e8] p-5">
+          <div
+            ref={previewRef}
+            className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f2e8] p-5"
+          >
             <div className="flex items-center justify-between gap-4">
-              <h3 className="text-2xl font-black">Preview</h3>
+              <div>
+                <h3 className="text-2xl font-black">Worksheet Preview</h3>
+                <p className="mt-1 text-sm text-neutral-600">
+                  Student copy, answer key, and error notes.
+                </p>
+              </div>
 
-              
-<CreditCounter refreshKey={creditRefreshKey} />
-<DownloadButton onDownload={downloadPdf} />
+              <div className="flex flex-col items-end gap-2">
+                <CreditCounter refreshKey={creditRefreshKey} />
+                <DownloadButton onDownload={downloadPdf} />
+                {pdfLoading && (
+                  <p className="text-xs text-neutral-500">Preparing PDF...</p>
+                )}
+              </div>
             </div>
 
             {!worksheet ? (
               <div className="mt-6 rounded-2xl bg-white p-6 text-neutral-500">
-                Your worksheet preview will show here.
+                Your worksheet preview will show here after you generate one.
               </div>
             ) : (
               <div className="mt-6 space-y-5">
-                <div className="rounded-2xl bg-white p-5">
-                  <h4 className="font-black">{worksheet.title}</h4>
-                  <p className="mt-2 text-sm text-neutral-600">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-neutral-400">
+                    Worksheet
+                  </p>
+                  <h4 className="mt-2 text-xl font-black">
+                    {worksheet.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-6 text-neutral-600">
                     {worksheet.instructions}
                   </p>
                 </div>
 
-                <div className="rounded-2xl bg-white p-5">
-                  <h4 className="font-bold text-emerald-700">
-                    Student Version
-                  </h4>
-                  <p className="mt-3 whitespace-pre-wrap leading-7">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+                  <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <h4 className="font-bold text-emerald-700">
+                      Student Version
+                    </h4>
+                    <span className="text-xs font-semibold text-neutral-400">
+                      Before corrections
+                    </span>
+                  </div>
+
+                  <p className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f2e8] p-4 leading-7 text-neutral-900">
                     {worksheet.studentText}
                   </p>
                 </div>
 
-                <div className="rounded-2xl bg-white p-5">
-                  <h4 className="font-bold text-emerald-700">Answer Key</h4>
-                  <p className="mt-3 whitespace-pre-wrap leading-7">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+                  <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <h4 className="font-bold text-emerald-700">Answer Key</h4>
+                    <span className="text-xs font-semibold text-neutral-400">
+                      Corrected version
+                    </span>
+                  </div>
+
+                  <p className="mt-4 whitespace-pre-wrap rounded-xl bg-emerald-50 p-4 leading-7 text-neutral-900">
                     {worksheet.answerKey}
                   </p>
                 </div>
 
                 {worksheet.errors && worksheet.errors.length > 0 && (
-                  <div className="rounded-2xl bg-white p-5">
+                  <div className="rounded-2xl border border-neutral-200 bg-white p-5">
                     <h4 className="font-bold text-emerald-700">
                       Errors Added
                     </h4>
@@ -325,7 +436,7 @@ export default function WorksheetTool({
                       {worksheet.errors.map((item, index) => (
                         <div
                           key={index}
-                          className="rounded-xl border border-neutral-200 p-3 text-sm"
+                          className="rounded-xl border border-neutral-200 bg-neutral-50 p-3 text-sm"
                         >
                           <p className="font-bold">{item.type}</p>
                           <p className="mt-1 text-neutral-600">
@@ -342,6 +453,11 @@ export default function WorksheetTool({
                     </div>
                   </div>
                 )}
+
+                <p className="rounded-2xl border border-neutral-200 bg-white p-4 text-sm leading-6 text-neutral-600">
+                  Want a clean printable copy? Download the PDF version with the
+                  worksheet and answer key using credits.
+                </p>
               </div>
             )}
           </div>
