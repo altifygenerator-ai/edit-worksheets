@@ -823,4 +823,263 @@ export const seoPages: Record<string, SeoPage> = {
   ],
   category: "grade-level",
 },
+"2nd-grade-editing-worksheets": {
+  title: "2nd Grade Editing Worksheets",
+  description:
+    "Create 2nd grade editing worksheets with simple grammar, spelling, punctuation, and capitalization mistakes for early writing practice.",
+  heading: "2nd Grade Editing Worksheets with Simple Errors",
+  intro:
+    "2nd grade students are just starting to notice writing mistakes, so editing practice needs to stay simple and clear. These worksheets focus on basic sentence structure, capitalization, and punctuation so students can build confidence while learning how to fix their own work.",
+  gradeLevel: "2nd grade",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "i like to play outside.",
+    "The cat run fast.",
+    "my friend sam has a red ball.",
+    "We was happy today.",
+    "The dog dont like rain.",
+    "she read a book about animals.",
+  ],
+  related: [
+    "3rd-grade-editing-worksheets",
+    "easy-editing-worksheets-for-beginners",
+    "daily-editing-practice",
+  ],
+  category: "grade-level",
+},
+
+"editing-worksheets-for-esl-students": {
+  title: "Editing Worksheets for ESL Students",
+  description:
+    "Generate editing worksheets for ESL students with clear grammar, punctuation, and sentence structure practice.",
+  heading: "Editing Worksheets for ESL Students",
+  intro:
+    "ESL students benefit from editing practice that is direct and easy to follow. These worksheets focus on common grammar and sentence mistakes that appear in everyday writing, helping students build accuracy and confidence step by step.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "She go to school every day.",
+    "I am like to read books.",
+    "He have two brothers.",
+    "We was in the classroom.",
+    "My teacher say to open the book.",
+    "They dont understand the question.",
+  ],
+  related: [
+    "sentence-correction-exercises",
+    "grammar-correction-exercises",
+    "easy-editing-worksheets-for-beginners",
+  ],
+  category: "proofreading",
+},
+
+"editing-practice-for-writing-centers": {
+  title: "Editing Practice for Writing Centers",
+  description:
+    "Create editing worksheets for writing centers with short grammar, punctuation, and spelling practice activities.",
+  heading: "Editing Practice for Writing Centers",
+  intro:
+    "Writing centers need activities students can complete independently. These editing worksheets give students focused correction practice without needing constant instruction, making them a strong fit for centers or rotation-based classrooms.",
+  gradeLevel: "elementary",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "the boy ride his bike to school.",
+    "My friend dont like carrots.",
+    "We was working quietly at our desks.",
+    "I seen a bird outside.",
+    "The teacher give us directions.",
+    "She have a blue notebook.",
+  ],
+  related: [
+    "editing-worksheets-for-bell-work",
+    "quick-editing-practice-worksheets",
+    "daily-editing-practice",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-test-prep": {
+  title: "Editing Worksheets for Test Prep",
+  description:
+    "Generate editing worksheets for test prep with grammar, punctuation, and proofreading errors similar to standardized tests.",
+  heading: "Editing Worksheets for Test Prep",
+  intro:
+    "Test prep editing practice helps students recognize common mistake patterns before they show up on assessments. These worksheets focus on sentence correction, grammar, and punctuation errors similar to what students see on standardized tests.",
+  gradeLevel: "upper elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "Each of the answers are written on the board.",
+    "The students was preparing for the exam.",
+    "Although the question was difficult the class tried their best.",
+    "My friend and me studied together.",
+    "The paragraph contain several errors that need fixing.",
+    "The teacher ask us to read carefully before answering.",
+  ],
+  related: [
+    "sentence-correction-exercises",
+    "grammar-correction-exercises",
+    "paragraph-editing-practice",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-fast-finishers": {
+  title: "Editing Worksheets for Fast Finishers",
+  description:
+    "Create quick editing worksheets for fast finishers with short grammar and punctuation correction tasks.",
+  heading: "Editing Worksheets for Fast Finishers",
+  intro:
+    "Fast finishers need something productive to work on without disrupting the class. These editing worksheets give students a quick, meaningful task that reinforces writing skills while keeping them engaged.",
+  gradeLevel: "elementary",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "We was done with our work early.",
+    "The class read a story about animals.",
+    "My brother dont like math.",
+    "I seen a movie last night.",
+    "The dog run fast across the yard.",
+    "She have a red backpack.",
+  ],
+  related: [
+    "quick-editing-practice-worksheets",
+    "editing-worksheets-for-bell-work",
+    "daily-editing-practice",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-substitute-teachers": {
+  title: "Editing Worksheets for Substitute Teachers",
+  description:
+    "Generate simple editing worksheets for substitute teachers with easy-to-follow grammar and punctuation practice.",
+  heading: "Editing Worksheets for Substitute Teachers",
+  intro:
+    "Substitute teachers need activities that are easy to explain and quick to start. These editing worksheets give students clear instructions and short correction tasks that can be used without preparation.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "The class was quiet but some students talk.",
+    "We read a story but forgot to answer the questions.",
+    "My friend dont understand the directions.",
+    "The teacher give us time to finish our work.",
+    "I seen a bird outside the window.",
+    "We was ready for the next activity.",
+  ],
+  related: [
+    "editing-worksheets-for-bell-work",
+    "quick-editing-practice-worksheets",
+    "daily-editing-practice",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-homeschool": {
+  title: "Editing Worksheets for Homeschool",
+  description:
+    "Create editing worksheets for homeschool students with flexible grammar, punctuation, and writing correction practice.",
+  heading: "Editing Worksheets for Homeschool",
+  intro:
+    "Homeschool lessons often need flexible materials that can adapt to different skill levels. These editing worksheets let you create custom practice based on what your student is currently learning.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "My student dont understand the lesson yet.",
+    "We was working on writing this morning.",
+    "The paragraph need more details and corrections.",
+    "She have improved her reading skills.",
+    "I seen progress in their writing.",
+    "The lesson was easier then yesterday.",
+  ],
+  related: [
+    "printable-editing-worksheets",
+    "editing-worksheets-with-answer-key",
+    "daily-editing-practice",
+  ],
+  category: "printable",
+},
+
+"editing-worksheets-for-small-groups": {
+  title: "Editing Worksheets for Small Groups",
+  description:
+    "Generate editing worksheets for small group instruction with targeted grammar and punctuation practice.",
+  heading: "Editing Worksheets for Small Groups",
+  intro:
+    "Small group instruction works best when materials are targeted and manageable. These editing worksheets help you focus on specific skills with a small set of students who need extra support.",
+  gradeLevel: "elementary and middle school",
+  errorAmount: "medium",
+  errorTypes: "mixed",
+  examples: [
+    "The group of students were working together.",
+    "My friend dont understand the lesson.",
+    "We was fixing sentences during group time.",
+    "The teacher give us extra help.",
+    "Each student have a different worksheet.",
+    "The activity help us improve our writing.",
+  ],
+  related: [
+    "grammar-correction-exercises",
+    "sentence-correction-exercises",
+    "paragraph-editing-practice",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-writing-warmups": {
+  title: "Editing Worksheets for Writing Warmups",
+  description:
+    "Create editing worksheets for writing warmups with short grammar and punctuation correction tasks.",
+  heading: "Editing Worksheets for Writing Warmups",
+  intro:
+    "Writing warmups should be quick, focused, and easy to start. These editing worksheets give students a short correction task that prepares them for writing without taking up too much class time.",
+  gradeLevel: "elementary",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "we started writing after fixing a sentence.",
+    "The class was quiet but some students talk.",
+    "I seen my mistake after reading again.",
+    "The teacher give us a warmup activity.",
+    "We was ready to begin our writing.",
+    "My sentence need a period.",
+  ],
+  related: [
+    "daily-editing-practice",
+    "editing-worksheets-for-bell-work",
+    "quick-editing-practice-worksheets",
+  ],
+  category: "proofreading",
+},
+
+"editing-worksheets-for-early-finishers": {
+  title: "Editing Worksheets for Early Finishers",
+  description:
+    "Generate editing worksheets for early finishers with quick grammar and punctuation correction practice.",
+  heading: "Editing Worksheets for Early Finishers",
+  intro:
+    "Early finishers need meaningful work that reinforces learning without adding extra complexity. These editing worksheets give students a quick task that keeps them focused and practicing writing skills.",
+  gradeLevel: "elementary",
+  errorAmount: "low",
+  errorTypes: "mixed",
+  examples: [
+    "The student was done with there work early.",
+    "I seen the answer quickly.",
+    "My friend dont need help.",
+    "The class was working quietly.",
+    "We was finished before the bell.",
+    "The teacher give us another task.",
+  ],
+  related: [
+    "quick-editing-practice-worksheets",
+    "editing-worksheets-for-fast-finishers",
+    "daily-editing-practice",
+  ],
+  category: "proofreading",
+},
 };
