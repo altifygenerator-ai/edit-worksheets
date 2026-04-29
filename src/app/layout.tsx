@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "printable worksheets",
   ],
 
-  metadataBase: new URL("https://edit-worksheets.vercel.app/"),
+  metadataBase: new URL("https://editworksheets.org"),
 
   verification: {
     google: "5y-62wLg0SUv41YcFBP_4MEIRwruudOrbLLSYE9dcPM",

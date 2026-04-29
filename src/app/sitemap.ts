@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { seoPages } from "@/data/seo-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = "https://edit-worksheets.vercel.app";
+  const siteUrl = "https://editworksheets.org";
 
   const seoUrls = Object.keys(seoPages).map((slug) => ({
     url: `${siteUrl}/seo/${slug}`,
