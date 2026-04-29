@@ -199,23 +199,20 @@ export default function WorksheetTool({
             </p>
 
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              Create a printable editing worksheet.
-            </h2>
+  Create editing worksheets from any text.
+</h2>
 
-            <p className="mt-3 text-neutral-600">
-              Paste a passage or upload a PDF, then choose the grade level and
-              error style.
-            </p>
+<p className="mt-3 text-neutral-700 font-medium">
+  Paste a passage or upload a PDF and generate a clean worksheet in seconds.
+</p>
 
-            <p className="mt-3 text-sm font-semibold text-neutral-800">
-              Generate for free — download clean printable PDFs with answer keys
-              using credits.
-            </p>
+<p className="mt-2 text-sm text-neutral-500">
+  Use it for bell work, homework, writing centers, or quick daily practice.
+</p>
 
-            <p className="mt-1 text-sm text-neutral-500">
-              Use this daily for bell work, homework, writing centers, or quick
-              editing practice.
-            </p>
+<p className="mt-2 text-sm font-semibold text-neutral-800">
+  Free to generate — download printable PDFs with answer keys using credits.
+</p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <label>
@@ -385,33 +382,50 @@ export default function WorksheetTool({
               <div className="mt-6 rounded-2xl bg-white p-6 text-neutral-500">
                 Your worksheet preview will show here after you generate one.
               </div>
-            ) : (
-              <div className="mt-6 space-y-5">
-                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-neutral-400">
-                    Worksheet
-                  </p>
-                  <h4 className="mt-2 text-xl font-black">
-                    {worksheet.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-neutral-600">
-                    {worksheet.instructions}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
-                  <div className="flex items-center justify-between border-b border-neutral-200 pb-3">
-                    <h4 className="font-bold text-emerald-700">
-                      Student Version
+                           ) : (
+              <div className="mt-6 space-y-4">
+                <div className="mx-auto max-w-[680px] border border-neutral-300 bg-white p-7 text-neutral-950 shadow-md">
+                  <div className="pb-4">
+                    <h4 className="text-center text-2xl font-black leading-tight">
+                      {worksheet.title || "Editing Practice Worksheet"}
                     </h4>
-                    <span className="text-xs font-semibold text-neutral-400">
-                      Before corrections
-                    </span>
+
+                    <div className="mt-6 grid gap-5 text-sm md:grid-cols-2">
+                      <div>
+                        <span className="font-bold">Name:</span>
+                        <span className="ml-2 inline-block w-44 border-b border-neutral-900 align-middle" />
+                      </div>
+
+                      <div className="md:text-right">
+                        <span className="font-bold">Date:</span>
+                        <span className="ml-2 inline-block w-36 border-b border-neutral-900 align-middle" />
+                      </div>
+                    </div>
+
+                    <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-b border-neutral-300 pb-4 text-xs font-semibold text-neutral-500">
+                      <span>Grade: {gradeLevel}</span>
+                      <span>Subject: Language Arts</span>
+                      <span>Practice: Editing</span>
+                    </div>
                   </div>
 
-                  <p className="mt-4 whitespace-pre-wrap rounded-xl bg-[#f7f2e8] p-4 leading-7 text-neutral-900">
-                    {worksheet.studentText}
-                  </p>
+                  <div className="mt-5">
+                    <p className="font-bold">Directions:</p>
+                    <p className="mt-1 leading-7 text-neutral-800">
+                      {worksheet.instructions ||
+                        "Read the passage below. Find and correct the spelling, grammar, punctuation, and capitalization mistakes."}
+                    </p>
+                  </div>
+
+                  <div className="mt-7 border-t border-neutral-200 pt-5">
+                    <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-neutral-400">
+                      Student Version
+                    </p>
+
+                    <p className="whitespace-pre-wrap leading-8 text-neutral-950">
+                      {worksheet.studentText}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="rounded-2xl border border-neutral-200 bg-white p-5">

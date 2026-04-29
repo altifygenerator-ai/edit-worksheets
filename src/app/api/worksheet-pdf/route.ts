@@ -152,15 +152,57 @@ async function createWorksheetPdf(worksheet: WorksheetData) {
   let page = newPage();
   let y = pageHeight - margin;
 
-  page.drawText(worksheet.title || "Editing Worksheet", {
-    x: margin,
+    const title = worksheet.title || "Editing Practice Worksheet";
+
+  const titleWidth = boldFont.widthOfTextAtSize(title, 22);
+
+  page.drawText(title, {
+    x: (pageWidth - titleWidth) / 2,
     y,
     size: 22,
     font: boldFont,
     color: rgb(0, 0, 0),
   });
 
-  y -= 35;
+  y -= 40;
+
+  page.drawText("Name: ______________________________", {
+    x: margin,
+    y,
+    size: 11,
+    font: boldFont,
+    color: rgb(0, 0, 0),
+  });
+
+  page.drawText("Date: __________________", {
+    x: pageWidth - margin - 160,
+    y,
+    size: 11,
+    font: boldFont,
+    color: rgb(0, 0, 0),
+  });
+
+  y -= 28;
+
+  page.drawText("Grade: __________    Subject: Language Arts    Practice: Editing", {
+    x: margin,
+    y,
+    size: 10,
+    font,
+    color: rgb(0.25, 0.25, 0.25),
+  });
+
+  y -= 30;
+
+  page.drawText("Directions:", {
+    x: margin,
+    y,
+    size: 12,
+    font: boldFont,
+    color: rgb(0, 0, 0),
+  });
+
+  y -= 18;
 
   y = addWrappedText(
     page,

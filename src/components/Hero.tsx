@@ -58,32 +58,58 @@ export default function Hero({ title, description }: HeroProps) {
 
         {/* RIGHT */}
         <div className="relative">
-          <div className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-xl">
-            
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
-              Example Preview
-            </p>
+       <div className="rounded-[2rem] border border-neutral-200 bg-white p-8 shadow-xl">
+  <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+    Example Preview
+  </p>
 
-            <h3 className="mt-2 text-lg font-black text-neutral-950">
-              Student Worksheet
-            </h3>
+  <div className="mt-5 border border-neutral-300 bg-white p-6 shadow-sm">
+    <h3 className="text-center text-2xl font-black">
+      Editing Worksheet
+    </h3>
 
-            <p className="mt-4 text-sm leading-6 text-neutral-800">
-              the students was excited to visit the science museum on friday.
-              they learned about planets animals and weather patterns.
-            </p>
+    <div className="mt-5 grid grid-cols-2 gap-4 text-sm">
+      <div>
+        <span className="font-bold">Name:</span>
+        <span className="ml-2 inline-block w-28 border-b border-black" />
+      </div>
 
-            <div className="mt-6 border-t border-neutral-200 pt-4">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">
-                Answer Key
-              </p>
+      <div className="text-right">
+        <span className="font-bold">Date:</span>
+        <span className="ml-2 inline-block w-24 border-b border-black" />
+      </div>
+    </div>
 
-              <p className="mt-2 text-sm leading-6 text-neutral-700">
-                The students were excited to visit the science museum on Friday.
-                They learned about planets, animals, and weather patterns.
-              </p>
-            </div>
-          </div>
+    <div className="mt-4 border-t border-neutral-200 pt-4">
+      <p className="text-sm font-bold">Directions:</p>
+      <p className="mt-1 text-sm leading-6 text-neutral-700">
+        Read the passage below. Find and correct the mistakes.
+      </p>
+    </div>
+
+    <div className="mt-4 border-t border-neutral-200 pt-4">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-neutral-400">
+        Student Version
+      </p>
+
+      <p className="mt-3 text-sm leading-6 text-neutral-900">
+        the students was excited to visit the science museum on friday.
+        they learned about planets animals and weather patterns.
+      </p>
+    </div>
+  </div>
+
+  <div className="mt-5 border-t border-neutral-200 pt-4">
+    <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-700">
+      Answer Key
+    </p>
+
+    <p className="mt-3 text-sm leading-6 text-neutral-700">
+      The students were excited to visit the science museum on Friday.
+      They learned about planets, animals, and weather patterns.
+    </p>
+  </div>
+</div>
 
           {/* floating badge */}
           <div className="absolute -bottom-6 -right-6 max-w-xs rounded-2xl bg-neutral-950 p-5 text-white shadow-xl">
