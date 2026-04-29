@@ -1,5 +1,6 @@
 "use client";
-
+import DownloadButton from "@/components/DownloadButton";
+import CreditCounter from "@/components/CreditCounter";
 import { useState } from "react";
 
 type WorksheetError = {
@@ -234,17 +235,31 @@ export default function WorksheetTool({
               <div className="h-px flex-1 bg-neutral-200" />
             </div>
 
-            <label className="block rounded-2xl border border-dashed border-neutral-300 bg-[#f7f2e8] p-5">
-              <span className="text-sm font-semibold text-neutral-700">
-                Upload PDF
-              </span>
-              <input
-                type="file"
-                accept="application/pdf"
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-                className="mt-3 block w-full text-sm text-neutral-600"
-              />
-            </label>
+           <label className="block rounded-2xl border border-dashed border-neutral-300 bg-[#f7f2e8] p-5">
+  <span className="text-sm font-semibold text-neutral-700">
+    Upload PDF
+  </span>
+
+  <p className="mt-2 text-sm leading-6 text-neutral-600">
+    Best results come from simple PDFs with normal text. Table-heavy documents
+    may not convert cleanly yet.
+  </p>
+
+  <input
+    type="file"
+    accept="application/pdf"
+    onChange={(e) => setFile(e.target.files?.[0] || null)}
+    className="mt-3 block w-full text-sm text-neutral-600"
+  />
+
+  {file && (
+    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+      If the worksheet looks messy after upload, try copying the text from the
+      PDF and pasting it into the text box instead. That usually gives cleaner
+      results.
+    </div>
+  )}
+</label>
 
             <button
               onClick={generateFromPdf}
@@ -265,13 +280,9 @@ export default function WorksheetTool({
             <div className="flex items-center justify-between gap-4">
               <h3 className="text-2xl font-black">Preview</h3>
 
-              <button
-                onClick={downloadPdf}
-                disabled={!worksheet || pdfLoading}
-                className="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {pdfLoading ? "Preparing..." : "Download PDF"}
-              </button>
+              
+<CreditCounter />
+<DownloadButton onDownload={downloadPdf} />
             </div>
 
             {!worksheet ? (
