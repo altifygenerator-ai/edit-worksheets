@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function CreditCounter() {
+export default function CreditCounter({
+  refreshKey = 0,
+}: {
+  refreshKey?: number;
+}) {
   const [credits, setCredits] = useState<number | null>(null);
 
   useEffect(() => {
@@ -29,7 +33,7 @@ export default function CreditCounter() {
     }
 
     loadCredits();
-  }, []);
+  }, [refreshKey]);
 
   if (credits === null) {
     return (

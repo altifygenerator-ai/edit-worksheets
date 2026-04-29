@@ -38,6 +38,7 @@ export default function WorksheetTool({
   const [loading, setLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [error, setError] = useState("");
+  const [creditRefreshKey, setCreditRefreshKey] = useState(0);
 
   async function generateFromText() {
     setLoading(true);
@@ -133,6 +134,7 @@ export default function WorksheetTool({
       a.click();
 
       window.URL.revokeObjectURL(url);
+      setCreditRefreshKey((prev) => prev + 1);
     } catch (err: any) {
       setError(err.message || "PDF download failed");
     } finally {
@@ -281,7 +283,7 @@ export default function WorksheetTool({
               <h3 className="text-2xl font-black">Preview</h3>
 
               
-<CreditCounter />
+<CreditCounter refreshKey={creditRefreshKey} />
 <DownloadButton onDownload={downloadPdf} />
             </div>
 

@@ -41,6 +41,12 @@ export default function Hero({ title, description }: HeroProps) {
             >
               See example worksheets
             </Link>
+            <Link
+  href="/worksheets"
+  className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
+>
+  Browse all worksheet types
+</Link>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-4 text-sm text-neutral-600">
