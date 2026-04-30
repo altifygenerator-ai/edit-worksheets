@@ -78,3 +78,8 @@ input[type="file"]::file-selector-button {
     linear-gradient(90deg, rgba(47, 125, 92, 0.05) 1px, transparent 1px);
   background-size: 34px 34px;
 }
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}

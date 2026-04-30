@@ -38,6 +38,7 @@ export default function WorksheetTool({
   const [errorAmount, setErrorAmount] = useState(defaultErrorAmount);
   const [errorTypes, setErrorTypes] = useState(defaultErrorTypes);
   const [worksheet, setWorksheet] = useState<Worksheet | null>(null);
+  const [isEditingOutput, setIsEditingOutput] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
   const [error, setError] = useState("");
@@ -45,6 +46,19 @@ export default function WorksheetTool({
   const [noCredits, setNoCredits] = useState(false);
   const [creditRefreshKey, setCreditRefreshKey] = useState(0);
   const [savedWorksheetId, setSavedWorksheetId] = useState<string | null>(null);
+
+  function updateWorksheetField(field: keyof Worksheet, value: string) {
+    if (!worksheet) return;
+
+    setWorksheet({
+      ...worksheet,
+      [field]: value,
+    });
+
+    if (savedWorksheetId) {
+      setSavedWorksheetId(null);
+    }
+  }
 
   function scrollToPreview() {
     setTimeout(() => {
@@ -61,6 +75,7 @@ export default function WorksheetTool({
     setSuccess("");
     setNoCredits(false);
     setWorksheet(null);
+    setIsEditingOutput(false);
     setSavedWorksheetId(null);
 
     try {
@@ -102,6 +117,7 @@ export default function WorksheetTool({
     setSuccess("");
     setNoCredits(false);
     setWorksheet(null);
+    setIsEditingOutput(false);
     setSavedWorksheetId(null);
 
     try {
@@ -129,40 +145,42 @@ export default function WorksheetTool({
       setLoading(false);
     }
   }
-async function saveWorksheet() {
-  if (!worksheet) return;
 
-  setError("");
-  setSuccess("");
+  async function saveWorksheet() {
+    if (!worksheet) return;
 
-  try {
-    const res = await fetch("/api/save-worksheet", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(worksheet),
-    });
+    setError("");
+    setSuccess("");
 
-    const data = await res.json();
+    try {
+      const res = await fetch("/api/save-worksheet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(worksheet),
+      });
 
-    if (res.status === 401) {
-      window.location.href = `/login?from=${encodeURIComponent(
-        window.location.pathname
-      )}`;
-      return;
+      const data = await res.json();
+
+      if (res.status === 401) {
+        window.location.href = `/login?from=${encodeURIComponent(
+          window.location.pathname
+        )}`;
+        return;
+      }
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to save worksheet");
+      }
+
+      setSavedWorksheetId(data.id);
+      setSuccess("Worksheet saved — you can find it in your dashboard.");
+    } catch (err: any) {
+      setError(err.message || "Failed to save worksheet");
     }
-
-    if (!res.ok) {
-      throw new Error(data.error || "Failed to save worksheet");
-    }
-
-    setSavedWorksheetId(data.id);
-    setSuccess("Worksheet saved — you can find it in your dashboard.");
-  } catch (err: any) {
-    setError(err.message || "Failed to save worksheet");
   }
-}
+
   async function downloadPdf() {
     if (!worksheet) return;
 
@@ -178,9 +196,9 @@ async function saveWorksheet() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-  worksheet,
-  worksheetId: savedWorksheetId,
-}),
+          worksheet,
+          worksheetId: savedWorksheetId,
+        }),
       });
 
       if (!res.ok) {
@@ -238,20 +256,20 @@ async function saveWorksheet() {
             </p>
 
             <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-  Create editing worksheets from any text.
-</h2>
+              Create editing worksheets from any text.
+            </h2>
 
-<p className="mt-3 text-neutral-700 font-medium">
-  Paste a passage or upload a PDF and generate a clean worksheet in seconds.
-</p>
+            <p className="mt-3 text-neutral-700 font-medium">
+              Paste a passage or upload a PDF and generate a clean worksheet in seconds.
+            </p>
 
-<p className="mt-2 text-sm text-neutral-500">
-  Use it for bell work, homework, writing centers, or quick daily practice.
-</p>
+            <p className="mt-2 text-sm text-neutral-500">
+              Use it for bell work, homework, writing centers, or quick daily practice.
+            </p>
 
-<p className="mt-2 text-sm font-semibold text-neutral-800">
-  Free to generate — download printable PDFs with answer keys using credits.
-</p>
+            <p className="mt-2 text-sm font-semibold text-neutral-800">
+              Free to generate — download printable PDFs with answer keys using credits.
+            </p>
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <label>
@@ -400,38 +418,112 @@ async function saveWorksheet() {
             ref={previewRef}
             className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f2e8] p-5"
           >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h3 className="text-2xl font-black">Worksheet Preview</h3>
-                <p className="mt-1 text-sm text-neutral-600">
-                  Student copy, answer key, and error notes.
-                </p>
-              </div>
+            <div className="space-y-4">
+  <div className="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <h3 className="text-2xl font-black">Worksheet Preview</h3>
+      <p className="mt-1 text-sm text-neutral-600">
+        Student copy, answer key, and error notes.
+      </p>
+    </div>
 
-              <div className="flex flex-col items-end gap-2">
-                <CreditCounter refreshKey={creditRefreshKey} />
-                <div className="flex flex-col gap-2">
-  <button
-    onClick={saveWorksheet}
-    disabled={!worksheet || !!savedWorksheetId}
-    className="rounded-xl border border-neutral-300 bg-white px-4 py-2 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
-  >
-    {savedWorksheetId ? "Saved" : "Save Worksheet"}
-  </button>
+    <CreditCounter refreshKey={creditRefreshKey} />
+  </div>
 
-  <DownloadButton onDownload={downloadPdf} />
+  {worksheet && (
+    <div className="grid gap-3 sm:grid-cols-3">
+      <button
+        onClick={() => setIsEditingOutput((prev) => !prev)}
+        className="rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100"
+      >
+        {isEditingOutput ? "Preview Worksheet" : "Edit Output"}
+      </button>
+
+      <button
+        onClick={saveWorksheet}
+        disabled={!worksheet || !!savedWorksheetId}
+        className="rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {savedWorksheetId ? "Saved" : "Save Worksheet"}
+      </button>
+
+      <DownloadButton onDownload={downloadPdf} />
+    </div>
+  )}
+
+  {pdfLoading && (
+    <p className="text-xs text-neutral-500">Preparing PDF...</p>
+  )}
 </div>
-                {pdfLoading && (
-                  <p className="text-xs text-neutral-500">Preparing PDF...</p>
-                )}
-              </div>
-            </div>
 
             {!worksheet ? (
               <div className="mt-6 rounded-2xl bg-white p-6 text-neutral-500">
                 Your worksheet preview will show here after you generate one.
               </div>
-                           ) : (
+            ) : isEditingOutput ? (
+              <div className="mt-6 space-y-4">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-5">
+                  <h4 className="font-bold text-emerald-700">
+                    Edit Worksheet Output
+                  </h4>
+                  <p className="mt-1 text-sm text-neutral-600">
+                    Changes here will be used when you save or download the worksheet.
+                  </p>
+
+                  <label className="mt-5 block">
+                    <span className="text-sm font-semibold text-neutral-700">
+                      Title
+                    </span>
+                    <input
+                      value={worksheet.title || ""}
+                      onChange={(e) =>
+                        updateWorksheetField("title", e.target.value)
+                      }
+                      className="mt-2 w-full rounded-xl border border-neutral-200 bg-[#f7f2e8] px-4 py-3 outline-none"
+                    />
+                  </label>
+
+                  <label className="mt-5 block">
+                    <span className="text-sm font-semibold text-neutral-700">
+                      Directions
+                    </span>
+                    <textarea
+                      value={worksheet.instructions || ""}
+                      onChange={(e) =>
+                        updateWorksheetField("instructions", e.target.value)
+                      }
+                      className="mt-2 min-h-[90px] w-full rounded-xl border border-neutral-200 bg-[#f7f2e8] px-4 py-3 outline-none"
+                    />
+                  </label>
+
+                  <label className="mt-5 block">
+                    <span className="text-sm font-semibold text-neutral-700">
+                      Student Version
+                    </span>
+                    <textarea
+                      value={worksheet.studentText || ""}
+                      onChange={(e) =>
+                        updateWorksheetField("studentText", e.target.value)
+                      }
+                      className="mt-2 min-h-[180px] w-full rounded-xl border border-neutral-200 bg-[#f7f2e8] px-4 py-3 leading-7 outline-none"
+                    />
+                  </label>
+
+                  <label className="mt-5 block">
+                    <span className="text-sm font-semibold text-neutral-700">
+                      Answer Key
+                    </span>
+                    <textarea
+                      value={worksheet.answerKey || ""}
+                      onChange={(e) =>
+                        updateWorksheetField("answerKey", e.target.value)
+                      }
+                      className="mt-2 min-h-[180px] w-full rounded-xl border border-neutral-200 bg-[#f7f2e8] px-4 py-3 leading-7 outline-none"
+                    />
+                  </label>
+                </div>
+              </div>
+            ) : (
               <div className="mt-6 space-y-4">
                 <div className="mx-auto max-w-[680px] border border-neutral-300 bg-white p-7 text-neutral-950 shadow-md">
                   <div className="pb-4">
