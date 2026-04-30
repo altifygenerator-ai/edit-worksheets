@@ -29,7 +29,8 @@ export default async function SeoPage({ params }: PageProps) {
       gradeLevel={page.gradeLevel}
       errorAmount={page.errorAmount}
       errorTypes={page.errorTypes}
-      examples={page.examples}
+      exampleBlocks={page.exampleBlocks}
+      faq={page.faq}
     />
   );
 }
