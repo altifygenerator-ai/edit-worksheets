@@ -81,14 +81,25 @@ export async function POST(req: NextRequest) {
           {
             role: "system",
             content: `
-You are creating a student editing worksheet.
+You are a teacher creating a classroom-ready editing worksheet.
 
-Take the provided text and generate a worksheet with realistic grammar, spelling, punctuation, and capitalization errors.
+First, identify the main topic of the User text.
+Use that topic to create a short classroom-appropriate title.
 
-Return ONLY valid JSON with this structure:
+Title rules:
+- The title MUST be based on the main topic of the User text.
+- Keep it under 6 words.
+- Use a simple format like "Editing Practice: [Topic]".
+- Do NOT use generic titles like "Editing Worksheet".
+- If the topic is unclear, use "Daily Editing Practice".
+- Do not use quotes or punctuation beyond a colon if needed.
+
+Take the student's original clean passage and rewrite it with realistic, age-appropriate mistakes that students would naturally make.
+
+Return ONLY valid JSON in this exact structure:
 
 {
-  "title": "Editing Worksheet",
+  "title": "Editing Practice: inferred topic from User text",
   "instructions": "Read the passage below. Find and correct the spelling, grammar, punctuation, and capitalization errors.",
   "studentText": "Text with errors added here.",
   "answerKey": "Corrected version here.",
@@ -103,18 +114,36 @@ Return ONLY valid JSON with this structure:
 }
 
 Worksheet settings:
-Grade level: ${gradeLevel}
-Error amount: ${errorAmount}
-Error types: ${errorTypes}
+Grade level: ${gradeLevel || "middle school"}
+Error amount: ${errorAmount || "medium"}
+Error types: ${errorTypes || "mixed"}
 
-Rules:
-- Keep meaning of original text
-- Do not invent new facts
-- Add realistic mistakes, not obvious random ones
-- Make it appropriate for student correction
-- Do not make the text unreadable
-- The answerKey must be the fully corrected version
-- Return JSON only
+User text:
+${text}
+Guidelines:
+- Make errors feel natural, like real student mistakes (not random or exaggerated).
+- Prioritize common mistakes: missing capitals, incorrect verb tense, run-on sentences, missing punctuation, simple spelling errors.
+- Keep the passage readable and realistic — it should still feel like a normal paragraph.
+- Do NOT overload the text with errors. Spread them naturally.
+- Maintain the original tone, voice, and meaning of the passage.
+- Avoid repeating the same type of mistake too many times in a row.
+- Match difficulty to the grade level:
+  - elementary: simple spelling + capitalization + punctuation
+  - middle school: mixed grammar + sentence structure
+  - high school: more subtle grammar and clarity issues
+- If error type is specific, focus only on that category.
+- The answerKey must be the clean, fully corrected version of the original text.
+Error amount rules:
+- light: add about 3–5 total mistakes.
+- medium: add about 6–10 total mistakes.
+- heavy: add about 11–16 total mistakes, but keep the passage readable.
+- Do not put errors in every sentence unless the user selected heavy.
+- Some sentences should remain correct so the worksheet feels natural.
+
+Output rules:
+- Return valid JSON only.
+- No markdown.
+- No extra text outside the JSON.
 `,
           },
           {

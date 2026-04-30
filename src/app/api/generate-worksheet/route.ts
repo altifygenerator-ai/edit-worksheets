@@ -21,12 +21,23 @@ export async function POST(req: Request) {
     const finalPrompt = `
 You are a teacher creating a classroom-ready editing worksheet.
 
+First, identify the main topic of the User text.
+Use that topic to create a short classroom-appropriate title.
+
+Title rules:
+- The title MUST be based on the main topic of the User text.
+- Keep it under 6 words.
+- Use a simple format like "Editing Practice: [Topic]".
+- Do NOT use generic titles like "Editing Worksheet".
+- If the topic is unclear, use "Daily Editing Practice".
+- Do not use quotes or punctuation beyond a colon if needed.
+
 Take the student's original clean passage and rewrite it with realistic, age-appropriate mistakes that students would naturally make.
 
 Return ONLY valid JSON in this exact structure:
 
 {
-  "title": "Editing Practice: [Topic]",
+  "title": "Editing Practice: inferred topic from User text",
   "instructions": "Read the passage below. Find and correct the spelling, grammar, punctuation, and capitalization errors.",
   "studentText": "Text with errors added here.",
   "answerKey": "Corrected version here.",
@@ -47,19 +58,6 @@ Error types: ${errorTypes || "mixed"}
 
 User text:
 ${text}
-Title rules:
-- Create a short, natural worksheet title based on the topic of the passage.
-- Keep it simple and classroom-appropriate, not creative or flashy.
-- Use formats like:
-  - "Editing Practice: [Topic]"
-  - "[Topic] Editing Worksheet"
-  - "Daily Editing Practice"
-- Keep it under 6 words.
-- Do not use the default title "Editing Worksheet" unless the topic is completely unclear.
-- If the topic is unclear, use "Daily Editing Practice".
-- Do not use quotes or punctuation beyond a colon if needed.
-- The title MUST include the topic of the passage.
-- Do NOT return "Editing Worksheet" or any generic title.
 Guidelines:
 - Make errors feel natural, like real student mistakes (not random or exaggerated).
 - Prioritize common mistakes: missing capitals, incorrect verb tense, run-on sentences, missing punctuation, simple spelling errors.

@@ -22,54 +22,69 @@ export async function POST(req: NextRequest) {
   try {
     const supabase = await createClient();
 
-const {
-  data: { user },
-} = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-if (!user) {
-  return NextResponse.json(
-    { error: "LOGIN_REQUIRED" },
-    { status: 401 }
-  );
-}
+    if (!user) {
+      return NextResponse.json({ error: "LOGIN_REQUIRED" }, { status: 401 });
+    }
 
-const { data: profile, error: profileError } = await supabase
-  .from("profiles")
-  .select("pdf_credits")
-  .eq("id", user.id)
-  .single();
+    const body = await req.json();
 
-if (profileError || !profile) {
-  return NextResponse.json(
-    { error: "Profile not found" },
-    { status: 404 }
-  );
-}
+    const worksheetId = body.worksheetId;
+    const worksheet = body.worksheet || body;
 
-if (profile.pdf_credits <= 0) {
-  return NextResponse.json(
-    { error: "NO_CREDITS" },
-    { status: 402 }
-  );
-}
-    const worksheet = (await req.json()) as WorksheetData;
     if (!worksheet || !worksheet.studentText) {
       return NextResponse.json(
         { error: "Missing worksheet data" },
         { status: 400 }
       );
     }
-    const pdfBytes = await createWorksheetPdf(worksheet);
-const { data: creditUsed, error: creditError } = await supabase.rpc(
-  "use_pdf_credit",
-  {
-    user_id: user.id,
-  }
-);
 
-if (creditError || !creditUsed) {
-  return new Response("NO_CREDITS", { status: 402 });
-}
+    let alreadyDownloaded = false;
+
+    if (worksheetId) {
+      const { data: savedWorksheet, error: savedError } = await supabase
+        .from("worksheets")
+        .select("pdf_downloaded")
+        .eq("id", worksheetId)
+        .eq("user_id", user.id)
+        .single();
+
+      if (savedError || !savedWorksheet) {
+        return NextResponse.json(
+          { error: "Saved worksheet not found" },
+          { status: 404 }
+        );
+      }
+
+      alreadyDownloaded = savedWorksheet.pdf_downloaded === true;
+    }
+
+    if (!alreadyDownloaded) {
+      const { data: creditUsed, error: creditError } = await supabase.rpc(
+        "use_pdf_credit",
+        {
+          user_id: user.id,
+        }
+      );
+
+      if (creditError || !creditUsed) {
+        return NextResponse.json({ error: "NO_CREDITS" }, { status: 402 });
+      }
+    }
+
+    const pdfBytes = await createWorksheetPdf(worksheet);
+
+    if (worksheetId && !alreadyDownloaded) {
+      await supabase
+        .from("worksheets")
+        .update({ pdf_downloaded: true })
+        .eq("id", worksheetId)
+        .eq("user_id", user.id);
+    }
+
     return new NextResponse(new Uint8Array(pdfBytes), {
       status: 200,
       headers: {

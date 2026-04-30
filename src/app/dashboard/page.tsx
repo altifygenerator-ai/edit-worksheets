@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import BuyCredits from "@/components/BuyCredits";
 import Link from "next/link";
-
+import SavedWorksheetCard from "@/components/SavedWorksheetCard";
 export default async function DashboardPage({
   searchParams,
 }: {
@@ -21,7 +21,11 @@ export default async function DashboardPage({
     .select("email, pdf_credits")
     .eq("id", user.id)
     .single();
-
+const { data: worksheets } = await supabase
+  .from("worksheets")
+  .select("id, title, created_at, pdf_downloaded, worksheet_json")
+  .eq("user_id", user.id)
+  .order("created_at", { ascending: false });
   const from = searchParams?.from;
 
   return (
@@ -87,6 +91,35 @@ export default async function DashboardPage({
               </p>
 
               <BuyCredits />
+              <section className="mt-10 rounded-3xl bg-white p-8 shadow-xl">
+  <div className="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <h2 className="text-2xl font-black">Saved worksheets</h2>
+      <p className="mt-2 text-neutral-600">
+        Redownload worksheets you already paid for without using another credit.
+      </p>
+    </div>
+  </div>
+
+  {!worksheets || worksheets.length === 0 ? (
+    <div className="mt-6 rounded-2xl bg-neutral-100 p-6 text-neutral-600">
+      You do not have any saved worksheets yet.
+    </div>
+  ) : (
+    <div className="mt-6 grid gap-4">
+      {worksheets.map((item) => (
+        <SavedWorksheetCard
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          createdAt={item.created_at}
+          pdfDownloaded={item.pdf_downloaded}
+          worksheet={item.worksheet_json}
+        />
+      ))}
+    </div>
+  )}
+</section>
             </div>
           </div>
         </section>

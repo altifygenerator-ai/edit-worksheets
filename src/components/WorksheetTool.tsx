@@ -44,6 +44,7 @@ export default function WorksheetTool({
   const [success, setSuccess] = useState("");
   const [noCredits, setNoCredits] = useState(false);
   const [creditRefreshKey, setCreditRefreshKey] = useState(0);
+  const [savedWorksheetId, setSavedWorksheetId] = useState<string | null>(null);
 
   function scrollToPreview() {
     setTimeout(() => {
@@ -60,6 +61,7 @@ export default function WorksheetTool({
     setSuccess("");
     setNoCredits(false);
     setWorksheet(null);
+    setSavedWorksheetId(null);
 
     try {
       const res = await fetch("/api/generate-worksheet", {
@@ -100,6 +102,7 @@ export default function WorksheetTool({
     setSuccess("");
     setNoCredits(false);
     setWorksheet(null);
+    setSavedWorksheetId(null);
 
     try {
       const formData = new FormData();
@@ -126,7 +129,40 @@ export default function WorksheetTool({
       setLoading(false);
     }
   }
+async function saveWorksheet() {
+  if (!worksheet) return;
 
+  setError("");
+  setSuccess("");
+
+  try {
+    const res = await fetch("/api/save-worksheet", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(worksheet),
+    });
+
+    const data = await res.json();
+
+    if (res.status === 401) {
+      window.location.href = `/login?from=${encodeURIComponent(
+        window.location.pathname
+      )}`;
+      return;
+    }
+
+    if (!res.ok) {
+      throw new Error(data.error || "Failed to save worksheet");
+    }
+
+    setSavedWorksheetId(data.id);
+    setSuccess("Worksheet saved — you can find it in your dashboard.");
+  } catch (err: any) {
+    setError(err.message || "Failed to save worksheet");
+  }
+}
   async function downloadPdf() {
     if (!worksheet) return;
 
@@ -141,7 +177,10 @@ export default function WorksheetTool({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(worksheet),
+        body: JSON.stringify({
+  worksheet,
+  worksheetId: savedWorksheetId,
+}),
       });
 
       if (!res.ok) {
@@ -371,7 +410,17 @@ export default function WorksheetTool({
 
               <div className="flex flex-col items-end gap-2">
                 <CreditCounter refreshKey={creditRefreshKey} />
-                <DownloadButton onDownload={downloadPdf} />
+                <div className="flex flex-col gap-2">
+  <button
+    onClick={saveWorksheet}
+    disabled={!worksheet || !!savedWorksheetId}
+    className="rounded-xl border border-neutral-300 bg-white px-4 py-2 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
+  >
+    {savedWorksheetId ? "Saved" : "Save Worksheet"}
+  </button>
+
+  <DownloadButton onDownload={downloadPdf} />
+</div>
                 {pdfLoading && (
                   <p className="text-xs text-neutral-500">Preparing PDF...</p>
                 )}
