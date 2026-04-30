@@ -13,9 +13,9 @@ type PageTemplateProps = {
   description: string;
   heading: string;
   intro: string;
-  gradeLevel: string;
-  errorAmount: string;
-  errorTypes: string;
+  gradeLevel?: string;
+errorAmount?: string;
+errorTypes?: string;
   exampleBlocks?: {
     incorrect: string;
     corrected: string;
@@ -32,9 +32,9 @@ export default function PageTemplate({
   description,
   heading,
   intro,
-  gradeLevel,
-  errorAmount,
-  errorTypes,
+  gradeLevel = "middle school",
+  errorAmount = "medium",
+  errorTypes = "mixed",
   exampleBlocks = [],
   faq = [],
 }: PageTemplateProps) {
