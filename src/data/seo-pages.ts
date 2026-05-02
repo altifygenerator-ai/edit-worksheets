@@ -30,343 +30,778 @@ export type SeoPage = {
 
   related: string[];
   category: SeoCategory;
+    howToUse?: string[];
+  commonMistakes?: string[];
+  whyThisMatters?: string;
+  classroomTips?: string[];
+  skillsCovered?: string[];
+  whenToUse?: string[];
+  difficultyNotes?: string;
+
 };
 
 export const seoPages: Record<string, SeoPage> = {
- "5th-grade-editing-passages": {
-  title: "5th Grade Editing Passages with Errors",
-  description:
-    "Create 5th grade editing passages with realistic grammar, spelling, punctuation, and capitalization errors for classroom writing practice.",
-  heading: "5th Grade Editing Passages with Errors",
-  intro:
-    "Give 5th grade students practical editing practice with short passages that feel like the kind of writing they see in class. These worksheets help students slow down, read carefully, and correct common mistakes in grammar, spelling, punctuation, and capitalization.",
-  gradeLevel: "5th grade",
-  errorAmount: "medium",
-  errorTypes: "mixed",
+  "5th-grade-editing-passages": {
+    title: "5th Grade Editing Passages with Errors",
+    description:
+      "Create 5th grade editing passages with realistic grammar, spelling, punctuation, and capitalization errors for classroom writing practice.",
+    heading: "5th Grade Editing Passages with Errors",
+    intro:
+      "Editing becomes more important in 5th grade because students are starting to write longer paragraphs, multi-sentence answers, reports, and more detailed personal responses. At this level, students usually know many basic rules, but they still miss mistakes when the writing is in paragraph form. These 5th grade editing passages give students practical proofreading practice with errors that feel close to the ones they make in their own writing. Instead of only fixing one isolated sentence, students have to slow down, read for meaning, and decide what needs to be corrected. That makes the practice more useful for real classroom writing. Teachers can use these passages for morning work, bell work, writing centers, homework, small group support, or review before a larger writing assignment. The goal is not just to catch mistakes for one worksheet, but to help students build the habit of rereading carefully before they turn in their own work.",
+    gradeLevel: "5th grade",
+    errorAmount: "medium",
+    errorTypes: "mixed",
 
-  exampleBlocks: [
-    {
-      incorrect: "The students was excited to visit the science museum on friday.",
-      corrected: "The students were excited to visit the science museum on Friday.",
-      notes: "Fixes subject-verb agreement and capitalization."
-    },
-    {
-      incorrect: "Mia packed her lunch, but forgot to bring she water bottle.",
-      corrected: "Mia packed her lunch, but forgot to bring her water bottle.",
-      notes: "Corrects pronoun usage."
-    },
-    {
-      incorrect: "My friends and me worked together on the history project.",
-      corrected: "My friends and I worked together on the history project.",
-      notes: "Fixes pronoun case."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "The students was excited to visit the science museum on friday.",
+        corrected: "The students were excited to visit the science museum on Friday.",
+        notes: "Fixes subject-verb agreement and capitalization."
+      },
+      {
+        incorrect: "Mia packed her lunch, but forgot to bring she water bottle.",
+        corrected: "Mia packed her lunch, but forgot to bring her water bottle.",
+        notes: "Corrects pronoun usage."
+      },
+      {
+        incorrect: "My friends and me worked together on the history project.",
+        corrected: "My friends and I worked together on the history project.",
+        notes: "Fixes pronoun case."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What are 5th grade editing passages?",
-      answer: "They are short passages with intentional mistakes that students correct to practice grammar, punctuation, and spelling."
-    },
-    {
-      question: "How are these used in class?",
-      answer: "Teachers use them for daily practice, writing warmups, or review before assignments."
-    }
-  ],
+    howToUse: [
+      "Use one short passage as bell work so students begin class with focused editing practice.",
+      "Project a passage and have students explain each correction before you reveal the answer key.",
+      "Assign passages during writing centers so students can practice independently while you work with small groups.",
+      "Use the answer key for quick review after students mark corrections on their own copy.",
+      "Have students rewrite the corrected passage when you want them to practice full-sentence accuracy."
+    ],
 
-  related: [
-    "4th-grade-editing-passages",
-    "middle-school-editing-passages",
-    "daily-editing-practice",
-  ],
-  category: "grade-level",
-},
+    commonMistakes: [
+      "Subject-verb agreement errors with plural subjects.",
+      "Missing capitalization for days, names, places, and sentence starts.",
+      "Pronoun mistakes such as using “me” where “I” is needed.",
+      "Verb tense shifts that make the passage sound awkward.",
+      "Missing commas or periods in longer sentences."
+    ],
+
+    whyThisMatters:
+      "By 5th grade, students are expected to revise and edit their own writing with more independence. Editing passages help students notice patterns in mistakes, not just guess at corrections. When students repeatedly practice finding grammar, punctuation, capitalization, and spelling errors in context, they become more aware of those same issues in their own drafts. That can lead to cleaner paragraphs, stronger written responses, and better confidence during writing assignments.",
+
+    classroomTips: [
+      "Ask students to underline the part of the sentence that proves their correction is needed.",
+      "Start with fewer errors for students who get overwhelmed, then increase the difficulty later.",
+      "Let partners compare corrections before reviewing as a class.",
+      "Keep a running anchor chart of repeated mistakes students find in the passages.",
+      "Use one passage per day instead of giving a large packet all at once."
+    ],
+
+    skillsCovered: [
+      "Grammar correction",
+      "Capitalization",
+      "Punctuation",
+      "Spelling awareness",
+      "Pronoun usage",
+      "Proofreading in context"
+    ],
+
+    whenToUse: [
+      "Morning work",
+      "Bell work",
+      "Writing warmups",
+      "Homework",
+      "Small group review",
+      "Test prep review"
+    ],
+
+    difficultyNotes:
+      "A medium difficulty level works well for most 5th grade classes because it includes a mix of obvious and slightly more subtle errors. If students are still building confidence, use a light error amount first. For advanced students, use heavier error amounts or require written explanations for each correction.",
+
+    faq: [
+      {
+        question: "What are 5th grade editing passages?",
+        answer:
+          "They are short passages with intentional mistakes that students correct to practice grammar, punctuation, spelling, capitalization, and proofreading."
+      },
+      {
+        question: "How are these used in class?",
+        answer:
+          "Teachers use them for daily practice, writing warmups, bell work, homework, small groups, or review before larger writing assignments."
+      },
+      {
+        question: "Should 5th grade editing passages be full paragraphs?",
+        answer:
+          "They can be short paragraphs or sets of connected sentences. Paragraphs are helpful because students practice proofreading in context instead of only fixing isolated sentences."
+      },
+      {
+        question: "Do these worksheets include answer keys?",
+        answer:
+          "Yes, the generated worksheets can include a corrected answer key so teachers and students can review the edits quickly."
+      }
+    ],
+
+    related: [
+      "4th-grade-editing-passages",
+      "middle-school-editing-passages",
+      "daily-editing-practice"
+    ],
+    category: "grade-level"
+  },
 
   "sentence-correction-exercises": {
-  title: "Sentence Correction Exercises",
-  description:
-    "Generate sentence correction exercises that help students fix grammar, spelling, punctuation, and capitalization mistakes.",
-  heading: "Sentence Correction Exercises",
-  intro:
-    "Sentence correction exercises are a simple way to help students focus on one mistake at a time. Use them for warmups, quick review, small group practice, or extra support when students need more repetition with common writing errors.",
-  gradeLevel: "upper elementary and middle school",
-  errorAmount: "medium",
-  errorTypes: "mixed",
+    title: "Sentence Correction Exercises",
+    description:
+      "Generate sentence correction exercises that help students fix grammar, spelling, punctuation, and capitalization mistakes.",
+    heading: "Sentence Correction Exercises",
+    intro:
+      "Sentence correction exercises are useful when students need quick, focused practice without reading a long passage. Each sentence gives students one small editing task: find what sounds wrong, decide which rule applies, and rewrite the sentence correctly. This makes sentence correction a strong fit for warmups, small groups, intervention work, tutoring, ESL practice, and review before writing assignments. Because the practice is short, students can complete it quickly, but the skills still transfer into longer writing. These exercises can focus on grammar, punctuation, capitalization, spelling, or a mixed set of errors depending on what students need most. They are especially helpful when students keep repeating the same mistakes in their own writing, because the teacher can create targeted practice instead of using a generic worksheet that only sort of fits.",
+    gradeLevel: "upper elementary and middle school",
+    errorAmount: "medium",
+    errorTypes: "mixed",
 
-  exampleBlocks: [
-    {
-      incorrect: "They was going to the park after school.",
-      corrected: "They were going to the park after school.",
-      notes: "Corrects subject-verb agreement."
-    },
-    {
-      incorrect: "we seen a large bird sitting on the fence.",
-      corrected: "We saw a large bird sitting on the fence.",
-      notes: "Fixes capitalization and verb tense."
-    },
-    {
-      incorrect: "I wanted to finish my story but the bell ringed.",
-      corrected: "I wanted to finish my story, but the bell rang.",
-      notes: "Corrects verb tense and punctuation."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "They was going to the park after school.",
+        corrected: "They were going to the park after school.",
+        notes: "Corrects subject-verb agreement."
+      },
+      {
+        incorrect: "we seen a large bird sitting on the fence.",
+        corrected: "We saw a large bird sitting on the fence.",
+        notes: "Fixes capitalization and verb tense."
+      },
+      {
+        incorrect: "I wanted to finish my story but the bell ringed.",
+        corrected: "I wanted to finish my story, but the bell rang.",
+        notes: "Corrects verb tense and punctuation."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What are sentence correction exercises?",
-      answer: "They are short sentences with mistakes that students fix to practice writing skills."
-    },
-    {
-      question: "When should I use them?",
-      answer: "They work well for quick review, warmups, and focused grammar practice."
-    }
-  ],
+    howToUse: [
+      "Use 3–5 sentences as a quick grammar warmup.",
+      "Have students rewrite the corrected sentence instead of only marking the mistake.",
+      "Group sentences by skill when you want targeted review.",
+      "Mix sentence types when students are ready for independent proofreading practice.",
+      "Use student writing patterns to choose the types of mistakes included."
+    ],
 
-  related: [
-    "grammar-correction-exercises",
-    "punctuation-correction-worksheet",
-    "proofreading-practice-worksheets",
-  ],
-  category: "grammar",
-},
+    commonMistakes: [
+      "Incorrect verb tense such as “seen” instead of “saw.”",
+      "Subject-verb agreement mistakes like “they was.”",
+      "Lowercase sentence starts.",
+      "Missing commas before conjunctions.",
+      "Awkward word choice or incorrect pronouns."
+    ],
+
+    whyThisMatters:
+      "Sentence correction helps students build editing confidence because the task is small and clear. Instead of facing an entire paragraph, students can focus on one sentence and one decision at a time. This builds accuracy, fluency, and awareness of common writing mistakes. Over time, students begin to recognize the same errors in their own drafts.",
+
+    classroomTips: [
+      "Ask students to name the type of error before correcting it.",
+      "Use one sentence as a class model before students work independently.",
+      "Give struggling students a word bank or hint for the correction.",
+      "Let students create their own incorrect sentences for classmates to fix.",
+      "Keep a few sentence correction exercises ready for transition times."
+    ],
+
+    skillsCovered: [
+      "Subject-verb agreement",
+      "Verb tense",
+      "Capitalization",
+      "Comma usage",
+      "Sentence clarity",
+      "Basic proofreading"
+    ],
+
+    whenToUse: [
+      "Quick warmups",
+      "Small group grammar lessons",
+      "Tutoring sessions",
+      "ESL support",
+      "Homework review",
+      "Daily writing practice"
+    ],
+
+    difficultyNotes:
+      "Light sentence correction works well for younger students or beginners. Medium difficulty is better for mixed grammar review. Heavy correction should be used carefully so sentences still feel natural and students do not get overwhelmed.",
+
+    faq: [
+      {
+        question: "What are sentence correction exercises?",
+        answer:
+          "They are short sentences with intentional mistakes that students correct to practice grammar, punctuation, spelling, capitalization, and sentence clarity."
+      },
+      {
+        question: "When should I use them?",
+        answer:
+          "They work well for quick review, warmups, small group instruction, tutoring, ESL support, and focused grammar practice."
+      },
+      {
+        question: "Are sentence correction exercises better than full passages?",
+        answer:
+          "They are better for quick targeted practice. Full passages are better when students need to proofread in context."
+      },
+      {
+        question: "Can sentence correction help with student writing?",
+        answer:
+          "Yes, repeated sentence correction helps students notice mistakes they often make in their own writing."
+      }
+    ],
+
+    related: [
+      "grammar-correction-exercises",
+      "punctuation-correction-worksheet",
+      "proofreading-practice-worksheets"
+    ],
+    category: "grammar"
+  },
 
   "punctuation-correction-worksheet": {
-  title: "Punctuation Correction Worksheet Generator",
-  description:
-    "Create punctuation correction worksheets with comma, period, apostrophe, quotation mark, and sentence ending mistakes.",
-  heading: "Punctuation Correction Worksheet Generator",
-  intro:
-    "Punctuation practice works best when students can see mistakes in real sentences. These worksheets help students correct missing commas, sentence endings, apostrophes, and other punctuation errors in a clear, classroom-friendly format.",
-  gradeLevel: "upper elementary and middle school",
-  errorAmount: "medium",
-  errorTypes: "punctuation",
+    title: "Punctuation Correction Worksheet Generator",
+    description:
+      "Create punctuation correction worksheets with comma, period, apostrophe, quotation mark, and sentence ending mistakes.",
+    heading: "Punctuation Correction Worksheet Generator",
+    intro:
+      "Punctuation practice is most useful when students see mistakes inside real sentences instead of memorizing rules by themselves. Students may know that a sentence needs punctuation, but they often forget commas, periods, quotation marks, apostrophes, or sentence endings when they are writing quickly. These punctuation correction worksheets give students direct practice finding and fixing those errors in a classroom-friendly format. Teachers can use them for focused punctuation lessons, quick review, homework, writing centers, or extra support for students who need repeated practice. The goal is to help students understand how punctuation changes meaning and makes writing easier to read. A clean punctuation worksheet can also make review faster because students can compare their corrections with an answer key.",
+    gradeLevel: "upper elementary and middle school",
+    errorAmount: "medium",
+    errorTypes: "punctuation",
 
-  exampleBlocks: [
-    {
-      incorrect: "After school we went to the library",
-      corrected: "After school, we went to the library.",
-      notes: "Adds comma and period."
-    },
-    {
-      incorrect: "The teacher said please take out your notebooks.",
-      corrected: "The teacher said, \"Please take out your notebooks.\"",
-      notes: "Adds comma and quotation marks."
-    },
-    {
-      incorrect: "We packed pencils paper folders and glue for the project.",
-      corrected: "We packed pencils, paper, folders, and glue for the project.",
-      notes: "Adds commas in a list."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "After school we went to the library",
+        corrected: "After school, we went to the library.",
+        notes: "Adds comma and period."
+      },
+      {
+        incorrect: "The teacher said please take out your notebooks.",
+        corrected: "The teacher said, \"Please take out your notebooks.\"",
+        notes: "Adds comma and quotation marks."
+      },
+      {
+        incorrect: "We packed pencils paper folders and glue for the project.",
+        corrected: "We packed pencils, paper, folders, and glue for the project.",
+        notes: "Adds commas in a list."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What punctuation skills do these worksheets cover?",
-      answer: "They cover commas, periods, apostrophes, quotation marks, and sentence endings."
-    },
-    {
-      question: "Why is punctuation practice important?",
-      answer: "It helps students make their writing clearer and easier to read."
-    }
-  ],
+    howToUse: [
+      "Choose punctuation-only errors when students need focused practice.",
+      "Use one punctuation skill at a time before mixing multiple skills.",
+      "Have students explain why each punctuation mark is needed.",
+      "Use short sentences for beginners and longer sentences for older students.",
+      "Review corrected examples as a class so students hear the sentence flow."
+    ],
 
-  related: [
-    "comma-practice-worksheets",
-    "capitalization-worksheets",
-    "sentence-correction-exercises",
-  ],
-  category: "punctuation",
-},
+    commonMistakes: [
+      "Missing commas after introductory phrases.",
+      "Forgetting commas in a series.",
+      "Leaving off periods or question marks.",
+      "Missing quotation marks around dialogue.",
+      "Using commas where periods or semicolons are needed."
+    ],
+
+    whyThisMatters:
+      "Punctuation affects how readers understand a sentence. When students leave out punctuation or place it incorrectly, their writing can become confusing even if the words are spelled correctly. Regular punctuation correction practice helps students learn where a sentence pauses, ends, or changes direction. This builds stronger proofreading habits and clearer writing.",
+
+    classroomTips: [
+      "Read incorrect sentences aloud so students can hear where punctuation is missing.",
+      "Start with commas and periods before adding quotation marks or apostrophes.",
+      "Ask students to label the punctuation rule being used.",
+      "Use student writing samples as inspiration for future practice.",
+      "Let students rewrite corrected sentences neatly for handwriting and editing practice."
+    ],
+
+    skillsCovered: [
+      "Commas after introductory phrases",
+      "Commas in lists",
+      "End punctuation",
+      "Quotation marks",
+      "Apostrophes",
+      "Dialogue punctuation",
+      "Sentence boundaries"
+    ],
+
+    whenToUse: [
+      "Punctuation lessons",
+      "Grammar review",
+      "Writing warmups",
+      "Small group practice",
+      "Homework",
+      "Test prep review"
+    ],
+
+    difficultyNotes:
+      "Punctuation worksheets can become difficult quickly if too many rules are mixed together. For younger students, start with periods, question marks, and simple commas. For older students, add dialogue punctuation, comma splices, compound sentences, and semicolon practice.",
+
+    faq: [
+      {
+        question: "What punctuation skills do these worksheets cover?",
+        answer:
+          "They can cover commas, periods, apostrophes, quotation marks, sentence endings, dialogue punctuation, and sentence boundaries."
+      },
+      {
+        question: "Why is punctuation practice important?",
+        answer:
+          "Punctuation helps students make their writing clearer, easier to read, and more accurate."
+      },
+      {
+        question: "Should punctuation worksheets focus on one skill or many?",
+        answer:
+          "Both can work. Focused worksheets help students learn one rule, while mixed worksheets help them practice proofreading more independently."
+      },
+      {
+        question: "Can these worksheets be used for middle school?",
+        answer:
+          "Yes, middle school students benefit from punctuation practice with longer sentences, dialogue, comma splices, and compound sentences."
+      }
+    ],
+
+    related: [
+      "comma-practice-worksheets",
+      "capitalization-worksheets",
+      "sentence-correction-exercises"
+    ],
+    category: "punctuation"
+  },
+
   "4th-grade-editing-passages": {
-  title: "4th Grade Editing Passages with Errors",
-  description:
-    "Create 4th grade editing passages with realistic grammar, punctuation, spelling, and capitalization mistakes for student practice.",
-  heading: "4th Grade Editing Passages with Errors",
-  intro:
-    "Help 4th grade students build stronger editing habits with short passages that include mistakes they are likely to make in their own writing. These pages work well for morning work, writing centers, homework, or quick review before a writing assignment.",
-  gradeLevel: "4th grade",
-  errorAmount: "medium",
-  errorTypes: "mixed",
+    title: "4th Grade Editing Passages with Errors",
+    description:
+      "Create 4th grade editing passages with realistic grammar, punctuation, spelling, and capitalization mistakes for student practice.",
+    heading: "4th Grade Editing Passages with Errors",
+    intro:
+      "Fourth grade is a key stage for building editing habits because students are writing more often and beginning to revise with more independence. They may understand basic grammar and punctuation rules, but they still need repeated practice applying those rules inside real writing. These 4th grade editing passages give students short, manageable practice with errors they are likely to make in their own sentences and paragraphs. The passages are useful for morning work, writing centers, homework, small groups, and quick review before a writing assignment. Instead of overwhelming students with a long proofreading task, each passage gives them a clear chance to slow down, reread, and make corrections. Over time, this helps students become more careful with capitalization, punctuation, spelling, verb tense, and pronoun use.",
+    gradeLevel: "4th grade",
+    errorAmount: "medium",
+    errorTypes: "mixed",
 
-  exampleBlocks: [
-    {
-      incorrect: "the dog runned across the yard after its ball.",
-      corrected: "The dog ran across the yard after its ball.",
-      notes: "Fixes capitalization and verb tense."
-    },
-    {
-      incorrect: "We went to the park after lunch on friday.",
-      corrected: "We went to the park after lunch on Friday.",
-      notes: "Corrects capitalization."
-    },
-    {
-      incorrect: "Sarah and me made a poster for science class.",
-      corrected: "Sarah and I made a poster for science class.",
-      notes: "Fixes pronoun case."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "the dog runned across the yard after its ball.",
+        corrected: "The dog ran across the yard after its ball.",
+        notes: "Fixes capitalization and verb tense."
+      },
+      {
+        incorrect: "We went to the park after lunch on friday.",
+        corrected: "We went to the park after lunch on Friday.",
+        notes: "Corrects capitalization."
+      },
+      {
+        incorrect: "Sarah and me made a poster for science class.",
+        corrected: "Sarah and I made a poster for science class.",
+        notes: "Fixes pronoun case."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What do 4th grade editing passages focus on?",
-      answer: "They focus on grammar, punctuation, spelling, and capitalization mistakes students commonly make."
-    },
-    {
-      question: "How often should students practice editing?",
-      answer: "Daily or a few times a week helps build strong editing habits."
-    }
-  ],
+    howToUse: [
+      "Use one passage at a time so students can focus without rushing.",
+      "Have students circle errors first, then rewrite the corrected sentence.",
+      "Use passages as writing center tasks during rotation time.",
+      "Send short passages home for independent proofreading practice.",
+      "Review the answer key together and ask students to explain each change."
+    ],
 
-  related: [
-    "5th-grade-editing-passages",
-    "daily-editing-practice",
-    "capitalization-worksheets",
-  ],
-  category: "grade-level",
-},
+    commonMistakes: [
+      "Lowercase sentence starts.",
+      "Incorrect past tense verbs like “runned.”",
+      "Forgetting to capitalize days, names, and places.",
+      "Using “me” instead of “I” in compound subjects.",
+      "Missing end punctuation."
+    ],
 
- "middle-school-editing-passages": {
-  title: "Middle School Editing Passages with Errors",
-  description:
-    "Generate middle school editing passages with more advanced grammar, punctuation, sentence structure, and proofreading errors.",
-  heading: "Middle School Editing Passages with Errors",
-  intro:
-    "Middle school students need editing practice that goes beyond simple mistakes. These passages help students work on agreement, punctuation, word choice, sentence clarity, and proofreading skills without feeling too childish or repetitive.",
-  gradeLevel: "middle school",
-  errorAmount: "medium",
-  errorTypes: "mixed",
+    whyThisMatters:
+      "Fourth grade students are developing the foundation they will need for longer writing in upper elementary grades. Editing passages help them connect grammar and punctuation rules to real writing. When students practice correcting mistakes in context, they become more likely to catch those same mistakes in their own drafts.",
 
-  exampleBlocks: [
-    {
-      incorrect: "The group of students were planning there trip for next month.",
-      corrected: "The group of students was planning their trip for next month.",
-      notes: "Fixes subject-verb agreement and possessive pronoun."
-    },
-    {
-      incorrect: "We was surprised by how quickly the storm passed.",
-      corrected: "We were surprised by how quickly the storm passed.",
-      notes: "Corrects verb agreement."
-    },
-    {
-      incorrect: "The article explains how pollution effects animals in the river.",
-      corrected: "The article explains how pollution affects animals in the river.",
-      notes: "Fixes word usage."
-    }
-  ],
+    classroomTips: [
+      "Limit the number of errors at first so students do not feel overwhelmed.",
+      "Use different colored pencils for different error types.",
+      "Let students work with partners after they complete their first attempt.",
+      "Keep corrections tied to rules students have already learned.",
+      "Use repeated practice instead of one large packet."
+    ],
 
-  faq: [
-    {
-      question: "What makes middle school editing different?",
-      answer: "It includes more advanced grammar, sentence structure, and clarity issues."
-    },
-    {
-      question: "Are these passages too easy for older students?",
-      answer: "No, they are designed to feel realistic and appropriately challenging."
-    }
-  ],
+    skillsCovered: [
+      "Capitalization",
+      "Verb tense",
+      "Pronoun usage",
+      "Punctuation",
+      "Basic proofreading",
+      "Sentence correction"
+    ],
 
-  related: [
-    "5th-grade-editing-passages",
-    "paragraph-editing-practice",
-    "grammar-correction-exercises",
-  ],
-  category: "grade-level",
-},
+    whenToUse: [
+      "Morning work",
+      "Writing centers",
+      "Homework",
+      "Small groups",
+      "Quick grammar review",
+      "Substitute plans"
+    ],
+
+    difficultyNotes:
+      "Most 4th grade editing passages should stay readable and not include too many errors at once. A medium error amount gives enough challenge without making the passage frustrating. Struggling students may need a lighter version with fewer mistakes.",
+
+    faq: [
+      {
+        question: "What do 4th grade editing passages focus on?",
+        answer:
+          "They focus on grammar, punctuation, spelling, capitalization, verb tense, and other mistakes students commonly make in writing."
+      },
+      {
+        question: "How often should students practice editing?",
+        answer:
+          "Daily practice or a few short editing activities each week can help students build stronger proofreading habits."
+      },
+      {
+        question: "Are editing passages better than single sentences?",
+        answer:
+          "Editing passages help students practice proofreading in context, while single sentences are useful for focused skill review."
+      },
+      {
+        question: "Can these be used for homework?",
+        answer:
+          "Yes, short editing passages work well for homework because they are clear, focused, and easy to review with an answer key."
+      }
+    ],
+
+    related: [
+      "5th-grade-editing-passages",
+      "daily-editing-practice",
+      "capitalization-worksheets"
+    ],
+    category: "grade-level"
+  },
+
+  "middle-school-editing-passages": {
+    title: "Middle School Editing Passages with Errors",
+    description:
+      "Generate middle school editing passages with more advanced grammar, punctuation, sentence structure, and proofreading errors.",
+    heading: "Middle School Editing Passages with Errors",
+    intro:
+      "Middle school editing passages need to feel more mature than basic elementary worksheets. Students at this level are usually ready for more realistic errors involving agreement, punctuation, sentence structure, word choice, clarity, and proofreading. These passages are designed to give students meaningful editing practice without making the work feel childish or repetitive. They can be used during writing warmups, grammar review, test prep, small group instruction, or independent practice. Middle school students often understand a rule when it is taught directly, but they still miss mistakes when reading a full paragraph. Editing passages help close that gap by requiring students to read carefully and apply grammar skills in context. The goal is to help students become stronger revisers, not just better worksheet completers.",
+    gradeLevel: "middle school",
+    errorAmount: "medium",
+    errorTypes: "mixed",
+
+    exampleBlocks: [
+      {
+        incorrect: "The group of students were planning there trip for next month.",
+        corrected: "The group of students was planning their trip for next month.",
+        notes: "Fixes subject-verb agreement and possessive pronoun."
+      },
+      {
+        incorrect: "We was surprised by how quickly the storm passed.",
+        corrected: "We were surprised by how quickly the storm passed.",
+        notes: "Corrects verb agreement."
+      },
+      {
+        incorrect: "The article explains how pollution effects animals in the river.",
+        corrected: "The article explains how pollution affects animals in the river.",
+        notes: "Fixes word usage."
+      }
+    ],
+
+    howToUse: [
+      "Use passages before writing assignments to remind students to proofread carefully.",
+      "Assign one passage as independent practice and review the answer key together.",
+      "Have students identify the type of each error, not just the correction.",
+      "Use passages in small groups for students who need targeted writing support.",
+      "Pair editing passages with revision lessons so students connect corrections to their own writing."
+    ],
+
+    commonMistakes: [
+      "Subject-verb agreement errors in longer sentence patterns.",
+      "Confusing words such as there/their or affect/effect.",
+      "Comma splices and run-on sentences.",
+      "Inconsistent verb tense.",
+      "Unclear pronoun references.",
+      "Missing commas after introductory clauses."
+    ],
+
+    whyThisMatters:
+      "Middle school writing becomes longer, more formal, and more complex. Students need practice editing paragraphs that resemble the writing they are expected to produce. Editing passages help students move beyond basic correction and begin thinking about clarity, sentence structure, and word choice. This supports stronger essays, responses, reports, and test writing.",
+
+    classroomTips: [
+      "Make students explain the rule behind each correction.",
+      "Use editing passages as a bridge between grammar lessons and essay revision.",
+      "Challenge advanced students to rewrite awkward sentences for better clarity.",
+      "Let students work in pairs, then defend their corrections.",
+      "Keep examples age-appropriate so students do not feel like the work is too childish."
+    ],
+
+    skillsCovered: [
+      "Agreement",
+      "Word choice",
+      "Sentence clarity",
+      "Comma usage",
+      "Run-on correction",
+      "Proofreading",
+      "Verb tense consistency"
+    ],
+
+    whenToUse: [
+      "Writing warmups",
+      "Grammar review",
+      "Small group instruction",
+      "Test prep",
+      "Independent practice",
+      "Essay revision prep"
+    ],
+
+    difficultyNotes:
+      "Middle school editing passages should include a mix of direct and subtle errors. Too many obvious mistakes can make the practice feel below grade level, while too many complex mistakes can frustrate students. A medium or high error amount works best when the passage still reads naturally.",
+
+    faq: [
+      {
+        question: "What makes middle school editing different?",
+        answer:
+          "Middle school editing includes more advanced grammar, sentence structure, punctuation, word choice, and clarity issues."
+      },
+      {
+        question: "Are these passages too easy for older students?",
+        answer:
+          "No, they can be adjusted to include more realistic and challenging errors appropriate for middle school writers."
+      },
+      {
+        question: "Can editing passages help with essay writing?",
+        answer:
+          "Yes, they help students build proofreading habits they can apply when revising essays and longer writing assignments."
+      },
+      {
+        question: "Should middle school students explain their corrections?",
+        answer:
+          "Yes, explaining corrections helps students understand the rule instead of just guessing what sounds right."
+        }
+    ],
+
+    related: [
+      "5th-grade-editing-passages",
+      "paragraph-editing-practice",
+      "grammar-correction-exercises"
+    ],
+    category: "grade-level"
+  },
 
   "grammar-correction-exercises": {
-  title: "Grammar Correction Exercises",
-  description:
-    "Create grammar correction exercises with subject-verb agreement, verb tense, pronoun, and sentence structure mistakes.",
-  heading: "Grammar Correction Exercises",
-  intro:
-    "Grammar correction exercises give students focused practice with the errors that show up most often in everyday writing. Use these worksheets to help students spot awkward sentences, fix agreement mistakes, and build more control over their writing.",
-  gradeLevel: "upper elementary and middle school",
-  errorAmount: "medium",
-  errorTypes: "grammar",
+    title: "Grammar Correction Exercises",
+    description:
+      "Create grammar correction exercises with subject-verb agreement, verb tense, pronoun, and sentence structure mistakes.",
+    heading: "Grammar Correction Exercises",
+    intro:
+      "Grammar correction exercises give students direct practice with the mistakes that show up most often in everyday writing. Instead of memorizing rules in isolation, students read a sentence or short passage, decide what sounds wrong, and correct it. This kind of practice is useful for subject-verb agreement, verb tense, pronouns, sentence structure, contractions, and word choice. Teachers can use grammar correction exercises for warmups, homework, small group instruction, tutoring, intervention, or review before writing assignments. These exercises are especially helpful when a class keeps making the same kinds of errors because the practice can be targeted to those exact skills. The goal is to help students build control over their writing so grammar becomes something they can apply naturally, not just something they recognize on a worksheet.",
+    gradeLevel: "upper elementary and middle school",
+    errorAmount: "medium",
+    errorTypes: "grammar",
 
-  exampleBlocks: [
-    {
-      incorrect: "She dont know the answer to the question.",
-      corrected: "She doesn't know the answer to the question.",
-      notes: "Fixes verb form and contraction."
-    },
-    {
-      incorrect: "They was going to the game after school.",
-      corrected: "They were going to the game after school.",
-      notes: "Corrects subject-verb agreement."
-    },
-    {
-      incorrect: "The dogs runs across the field every morning.",
-      corrected: "The dogs run across the field every morning.",
-      notes: "Fixes verb agreement."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "She dont know the answer to the question.",
+        corrected: "She doesn't know the answer to the question.",
+        notes: "Fixes verb form and contraction."
+      },
+      {
+        incorrect: "They was going to the game after school.",
+        corrected: "They were going to the game after school.",
+        notes: "Corrects subject-verb agreement."
+      },
+      {
+        incorrect: "The dogs runs across the field every morning.",
+        corrected: "The dogs run across the field every morning.",
+        notes: "Fixes verb agreement."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What skills do grammar correction exercises build?",
-      answer: "They help students improve sentence structure, agreement, and overall writing accuracy."
-    },
-    {
-      question: "Who should use these worksheets?",
-      answer: "They are ideal for upper elementary and middle school students."
-    }
-  ],
+    howToUse: [
+      "Choose grammar-only errors when students need focused skill practice.",
+      "Use a few sentences at the start of class for quick review.",
+      "Group exercises by skill, such as verb tense or pronouns.",
+      "Have students rewrite corrected sentences to reinforce the correct form.",
+      "Use mixed grammar exercises after students have practiced individual skills."
+    ],
 
-  related: [
-    "sentence-correction-exercises",
-    "middle-school-editing-passages",
-    "proofreading-practice-worksheets",
-  ],
-  category: "grammar",
-},
+    commonMistakes: [
+      "Using the wrong verb form with singular or plural subjects.",
+      "Mixing past and present tense in the same sentence.",
+      "Using incorrect pronouns in compound subjects.",
+      "Using contractions incorrectly.",
+      "Writing sentences that sound awkward or incomplete."
+    ],
+
+    whyThisMatters:
+      "Grammar correction helps students understand how sentences work. When students repeatedly fix grammar mistakes in context, they begin to notice those same problems in their own writing. This leads to clearer sentences, stronger paragraphs, and more confidence during writing tasks.",
+
+    classroomTips: [
+      "Ask students to identify the grammar rule before correcting the sentence.",
+      "Use student writing patterns to decide which grammar skills to practice.",
+      "Keep grammar correction short and consistent instead of assigning too much at once.",
+      "Let students compare corrections with a partner before reviewing.",
+      "Use corrected sentences as models for students' own writing."
+    ],
+
+    skillsCovered: [
+      "Subject-verb agreement",
+      "Verb tense",
+      "Pronoun usage",
+      "Contractions",
+      "Sentence structure",
+      "Word choice",
+      "Proofreading"
+    ],
+
+    whenToUse: [
+      "Grammar warmups",
+      "Homework",
+      "Small group support",
+      "Writing intervention",
+      "Test prep",
+      "Tutoring"
+    ],
+
+    difficultyNotes:
+      "Grammar correction can be adjusted by changing the number and subtlety of the mistakes. Younger students benefit from obvious errors, while older students need more realistic mistakes involving agreement, tense consistency, and sentence clarity.",
+
+    faq: [
+      {
+        question: "What skills do grammar correction exercises build?",
+        answer:
+          "They help students improve sentence structure, agreement, verb tense, pronoun use, word choice, and overall writing accuracy."
+      },
+      {
+        question: "Who should use these worksheets?",
+        answer:
+          "They are useful for upper elementary, middle school, ESL, tutoring, and students who need extra grammar practice."
+      },
+      {
+        question: "Can grammar correction help students write better?",
+        answer:
+          "Yes, repeated correction practice helps students notice and avoid common mistakes in their own writing."
+      },
+      {
+        question: "Should grammar exercises focus on one skill at a time?",
+        answer:
+          "Focused practice is best when teaching a new skill. Mixed grammar correction is better for review and independent proofreading."
+      }
+    ],
+
+    related: [
+      "sentence-correction-exercises",
+      "middle-school-editing-passages",
+      "proofreading-practice-worksheets"
+    ],
+    category: "grammar"
+  },
 
   "capitalization-worksheets": {
-  title: "Capitalization Worksheets with Errors",
-  description:
-    "Generate capitalization worksheets that help students correct sentence starts, proper nouns, places, titles, days, and months.",
-  heading: "Capitalization Worksheets with Errors",
-  intro:
-    "Capitalization mistakes are easy for students to overlook, especially when they are writing quickly. These worksheets give students direct practice fixing lowercase sentence starts, names, places, holidays, days of the week, and other common capitalization errors.",
-  gradeLevel: "elementary",
-  errorAmount: "low",
-  errorTypes: "capitalization",
+    title: "Capitalization Worksheets with Errors",
+    description:
+      "Generate capitalization worksheets that help students correct sentence starts, proper nouns, places, titles, days, and months.",
+    heading: "Capitalization Worksheets with Errors",
+    intro:
+      "Capitalization mistakes are common because students often know the rule but forget to apply it while writing. These capitalization worksheets give students focused practice correcting lowercase sentence starts, names, places, holidays, days of the week, months, titles, and the pronoun I. Capitalization practice is especially helpful for elementary students, ESL students, and any learners who need extra support with writing conventions. The worksheets can be used as quick warmups, homework, morning work, writing center activities, or review before students begin a larger writing assignment. Because capitalization is easy to overlook, repeated short practice helps students slow down and check their writing more carefully. A clean answer key makes it easier for teachers to review corrections quickly.",
+    gradeLevel: "elementary",
+    errorAmount: "low",
+    errorTypes: "capitalization",
 
-  exampleBlocks: [
-    {
-      incorrect: "we went to texas during the summer.",
-      corrected: "We went to Texas during the summer.",
-      notes: "Capitalizes the sentence start and proper noun."
-    },
-    {
-      incorrect: "My friend sarah is coming over later.",
-      corrected: "My friend Sarah is coming over later.",
-      notes: "Capitalizes a person's name."
-    },
-    {
-      incorrect: "on monday, our class started a new book.",
-      corrected: "On Monday, our class started a new book.",
-      notes: "Capitalizes the sentence start and day of the week."
-    }
-  ],
+    exampleBlocks: [
+      {
+        incorrect: "we went to texas during the summer.",
+        corrected: "We went to Texas during the summer.",
+        notes: "Capitalizes the sentence start and proper noun."
+      },
+      {
+        incorrect: "My friend sarah is coming over later.",
+        corrected: "My friend Sarah is coming over later.",
+        notes: "Capitalizes a person's name."
+      },
+      {
+        incorrect: "on monday, our class started a new book.",
+        corrected: "On Monday, our class started a new book.",
+        notes: "Capitalizes the sentence start and day of the week."
+      }
+    ],
 
-  faq: [
-    {
-      question: "What do capitalization worksheets help students practice?",
-      answer: "They help students correct sentence starts, names, places, days, months, holidays, and titles."
-    },
-    {
-      question: "Why do students need capitalization practice?",
-      answer: "Capitalization mistakes are common in student writing, especially when students write quickly."
-    }
-  ],
+    howToUse: [
+      "Use capitalization-only practice when students are missing basic writing conventions.",
+      "Start with sentence beginnings and names before moving into titles, places, and dates.",
+      "Have students highlight every word they change so corrections are easy to review.",
+      "Use short daily practice instead of one long assignment.",
+      "Pair capitalization worksheets with student writing revision."
+    ],
 
-  related: [
-    "4th-grade-editing-passages",
-    "punctuation-correction-worksheet",
-    "daily-editing-practice",
-  ],
-  category: "grammar",
-},
+    commonMistakes: [
+      "Forgetting to capitalize the first word of a sentence.",
+      "Writing names of people in lowercase.",
+      "Forgetting to capitalize days and months.",
+      "Leaving places or states lowercase.",
+      "Writing the pronoun I in lowercase."
+    ],
+
+    whyThisMatters:
+      "Capitalization helps writing look polished and easier to read. Students may understand capitalization rules when asked directly, but they often miss them when writing quickly. Focused capitalization worksheets help students build the habit of checking sentence starts and proper nouns before turning in their work.",
+
+    classroomTips: [
+      "Ask students to underline proper nouns before correcting capitalization.",
+      "Use color coding for sentence starts, names, and places.",
+      "Keep the practice short for younger students.",
+      "Have students check their own writing for the same capitalization rule after completing the worksheet.",
+      "Use capitalization practice as a quick confidence-building activity."
+    ],
+
+    skillsCovered: [
+      "Sentence starts",
+      "Proper nouns",
+      "Names",
+      "Places",
+      "Days and months",
+      "The pronoun I",
+      "Titles and holidays"
+    ],
+
+    whenToUse: [
+      "Elementary writing practice",
+      "Morning work",
+      "ESL support",
+      "Writing centers",
+      "Homework",
+      "Quick review"
+    ],
+
+    difficultyNotes:
+      "Capitalization worksheets should usually begin with obvious errors for younger students. Once students understand the basics, add mixed examples with names, places, days, months, and sentence starts in the same worksheet.",
+
+    faq: [
+      {
+        question: "What do capitalization worksheets help students practice?",
+        answer:
+          "They help students correct sentence starts, names, places, days, months, holidays, titles, and the pronoun I."
+      },
+      {
+        question: "Why do students need capitalization practice?",
+        answer:
+          "Capitalization mistakes are common in student writing, especially when students write quickly or forget to reread."
+      },
+      {
+        question: "Are capitalization worksheets good for beginners?",
+        answer:
+          "Yes, capitalization worksheets are especially useful for early elementary students and beginners because the corrections are clear and easy to see."
+      },
+      {
+        question: "Can capitalization practice be mixed with other editing skills?",
+        answer:
+          "Yes, once students are confident, capitalization can be mixed with punctuation, spelling, and grammar errors for broader editing practice."
+      }
+    ],
+
+    related: [
+      "4th-grade-editing-passages",
+      "punctuation-correction-worksheet",
+      "daily-editing-practice"
+    ],
+    category: "grammar"
+  }
+,
 
 "daily-editing-practice": {
   title: "Daily Editing Practice Worksheets",
