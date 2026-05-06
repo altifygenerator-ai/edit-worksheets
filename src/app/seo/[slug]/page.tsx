@@ -29,6 +29,14 @@ export default async function SeoPage({ params }: PageProps) {
       gradeLevel={page.gradeLevel}
       errorAmount={page.errorAmount}
       errorTypes={page.errorTypes}
+      category={page.category}
+      whyThisMatters={page.whyThisMatters}
+      commonMistakes={page.commonMistakes}
+      classroomTips={page.classroomTips}
+      skillsCovered={page.skillsCovered}
+      whenToUse={page.whenToUse}
+      difficultyNotes={page.difficultyNotes}
+      related={page.related}
       exampleBlocks={page.exampleBlocks}
       faq={page.faq}
     />

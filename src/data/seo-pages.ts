@@ -1,3 +1,4 @@
+
 export type SeoCategory =
   | "grade-level"
   | "grammar"
@@ -16,9 +17,37 @@ export type SeoPage = {
   description: string;
   heading: string;
   intro: string;
+
   gradeLevel: string;
-  errorAmount: string;
-  errorTypes: string;
+  errorAmount: "low" | "medium" | "high";
+  errorTypes: "grammar" | "punctuation" | "spelling" | "capitalization" | "mixed";
+
+  // NEW
+  searchIntent?: string;
+  audience?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+
+  heroStyle?: "teacher" | "worksheet" | "grammar" | "grade";
+
+  contentSections?: {
+    title: string;
+    content: string;
+  }[];
+
+  relatedSkills?: string[];
+
+  classroomUseCases?: string[];
+
+  curriculumConnections?: string[];
+
+  printableFeatures?: string[];
+
+  commonStudentStruggles?: string[];
+
+  teacherTips?: string[];
+
+
   
 
   // added fields
@@ -1573,10 +1602,13 @@ export const seoPages: Record<string, SeoPage> = {
 "editing-worksheets-for-bell-work": {
   title: "Editing Worksheets for Bell Work",
   description:
-    "Create quick editing worksheets for bell work with short grammar, punctuation, spelling, and capitalization practice.",
+    "Create editing worksheets for bell work with quick grammar, punctuation, capitalization, and proofreading practice students can complete at the start of class.",
+
   heading: "Editing Worksheets for Bell Work",
+
   intro:
-    "Bell work needs to be quick, clear, and easy to start without a lot of directions. These editing worksheets give students a short writing correction task they can begin as soon as they sit down.",
+    "Editing worksheets for bell work help students begin class with a focused writing task that reinforces grammar, punctuation, capitalization, spelling, and proofreading skills. Because bell work activities are usually short, students need editing practice that is quick to start while still being meaningful enough to build long-term writing habits. These worksheets work well for morning work, warmups, transition periods, substitute plans, independent review, and writing preparation before larger assignments. Teachers can use them to reinforce grammar skills already taught in class or to help students practice rereading and correcting mistakes independently. Short editing tasks at the start of class also help students settle in, focus faster, and transition into academic work more smoothly.",
+
   gradeLevel: "elementary and middle school",
   errorAmount: "low",
   errorTypes: "mixed",
@@ -1585,7 +1617,7 @@ export const seoPages: Record<string, SeoPage> = {
     {
       incorrect: "today we will review our spelling words.",
       corrected: "Today we will review our spelling words.",
-      notes: "Capitalizes sentence start."
+      notes: "Capitalizes the sentence start."
     },
     {
       incorrect: "The students was ready to begin the lesson.",
@@ -1595,18 +1627,70 @@ export const seoPages: Record<string, SeoPage> = {
     {
       incorrect: "I forgot my notebook but I brought my pencil.",
       corrected: "I forgot my notebook, but I brought my pencil.",
-      notes: "Adds comma before conjunction."
+      notes: "Adds a comma before the conjunction."
     }
   ],
 
+  commonMistakes: [
+    "Missing capitalization at the beginning of sentences.",
+    "Incorrect subject-verb agreement in simple sentences.",
+    "Missing commas before coordinating conjunctions.",
+    "Forgetting end punctuation.",
+    "Using incorrect verb tense in classroom writing."
+  ],
+
+  whyThisMatters:
+    "Daily editing practice helps students build proofreading habits through repetition and consistency. Bell work editing activities are especially useful because students practice grammar and writing skills in small amounts every day instead of only during larger assignments. Over time, students become more aware of punctuation, capitalization, grammar, and sentence structure mistakes in their own writing.",
+
+  classroomTips: [
+    "Keep bell work short enough that students can begin independently without extra directions.",
+    "Project one correction example before students start working.",
+    "Use editing bell work to review grammar skills taught earlier in the week.",
+    "Allow students to explain why each correction is needed during review.",
+    "Use editing warmups consistently so proofreading becomes part of the classroom routine."
+  ],
+
+  skillsCovered: [
+    "Grammar correction",
+    "Capitalization",
+    "Punctuation",
+    "Sentence editing",
+    "Proofreading",
+    "Daily writing review"
+  ],
+
+  whenToUse: [
+    "Morning work",
+    "Bell work",
+    "Writing warmups",
+    "Substitute plans",
+    "Transition activities",
+    "Quick grammar review"
+  ],
+
+  difficultyNotes:
+    "Bell work editing worksheets should stay short and approachable so students can begin quickly at the start of class. Too many corrections can slow students down and reduce engagement, especially during shorter class periods.",
+
   faq: [
     {
-      question: "What is bell work?",
-      answer: "Bell work is a short activity students complete at the start of class."
+      question: "What is editing bell work?",
+      answer:
+        "Editing bell work is a short proofreading activity students complete at the beginning of class to practice grammar, punctuation, capitalization, and sentence correction skills."
     },
     {
       question: "Why use editing worksheets for bell work?",
-      answer: "They give students a quick, meaningful task that builds writing skills daily."
+      answer:
+        "Editing worksheets help students begin class with focused writing practice while reinforcing grammar and proofreading skills in small daily amounts."
+    },
+    {
+      question: "How long should editing bell work take?",
+      answer:
+        "Most editing bell work activities should take between 5 and 10 minutes so students can complete them quickly before the main lesson begins."
+    },
+    {
+      question: "Can editing bell work improve student writing?",
+      answer:
+        "Yes, repeated proofreading practice helps students recognize grammar and punctuation mistakes more easily in their own writing assignments."
     }
   ],
 
@@ -1615,6 +1699,7 @@ export const seoPages: Record<string, SeoPage> = {
     "quick-editing-practice-worksheets",
     "editing-worksheets-for-homework",
   ],
+
   category: "proofreading",
 },
 
@@ -1667,11 +1752,15 @@ export const seoPages: Record<string, SeoPage> = {
 },
 "quick-editing-practice-worksheets": {
   title: "Quick Editing Practice Worksheets",
+
   description:
-    "Generate quick editing practice worksheets with short sentences students can correct in just a few minutes.",
+    "Generate quick editing practice worksheets with short grammar, punctuation, spelling, and capitalization corrections students can complete in minutes.",
+
   heading: "Quick Editing Practice Worksheets",
+
   intro:
-    "Quick editing practice is useful when you only have a few minutes but still want students thinking about writing. These worksheets use short sentences and simple mistakes so students can practice without slowing down the rest of the lesson.",
+    "Quick editing practice worksheets give students short proofreading activities that can fit into almost any part of the school day. These worksheets are designed for fast grammar review, writing warmups, transitions, homework, tutoring, and independent practice without taking up an entire lesson. Because the editing tasks are shorter, students can focus on finding mistakes without feeling overwhelmed by long passages or large assignments. Teachers often use quick editing activities to reinforce punctuation, capitalization, grammar, spelling, and sentence structure skills in a low-pressure format. Short editing review also helps students build stronger proofreading habits through consistent repetition over time.",
+
   gradeLevel: "elementary",
   errorAmount: "low",
   errorTypes: "mixed",
@@ -1694,14 +1783,66 @@ export const seoPages: Record<string, SeoPage> = {
     }
   ],
 
+  commonMistakes: [
+    "Lowercase sentence beginnings.",
+    "Incorrect singular and plural verb usage.",
+    "Missing punctuation at the end of sentences.",
+    "Forgetting to capitalize names and proper nouns.",
+    "Simple grammar mistakes in short sentences."
+  ],
+
+  whyThisMatters:
+    "Short editing activities help students practice proofreading consistently without making the work feel overwhelming. Quick editing review is useful because students improve their writing skills through repeated exposure to common grammar, punctuation, and capitalization mistakes. Small amounts of editing practice each day can lead to stronger proofreading habits over time.",
+
+  classroomTips: [
+    "Use quick editing review during transitions or extra classroom time.",
+    "Keep the focus on one or two editing skills for younger students.",
+    "Allow students to explain corrections aloud after reviewing answers.",
+    "Use quick editing worksheets as independent warmups before writing lessons.",
+    "Rotate grammar, punctuation, and capitalization skills throughout the week."
+  ],
+
+  skillsCovered: [
+    "Sentence correction",
+    "Capitalization",
+    "Basic grammar",
+    "Punctuation",
+    "Proofreading",
+    "Editing fluency"
+  ],
+
+  whenToUse: [
+    "Warmups",
+    "Morning work",
+    "Transitions",
+    "Homework",
+    "Tutoring",
+    "Fast review activities"
+  ],
+
+  difficultyNotes:
+    "Quick editing worksheets work best when the corrections are simple and focused. Younger students may struggle if too many grammar rules appear in the same activity, so shorter sentences and fewer mistakes are usually more effective.",
+
   faq: [
     {
       question: "What is quick editing practice?",
-      answer: "It is short, fast editing work students can complete in just a few minutes."
+      answer:
+        "Quick editing practice uses short proofreading activities that students can complete in only a few minutes."
     },
     {
-      question: "When should I use quick editing worksheets?",
-      answer: "They work well for transitions, warmups, or when you have limited class time."
+      question: "When should teachers use quick editing worksheets?",
+      answer:
+        "Teachers often use them for warmups, transitions, morning work, tutoring, homework, and fast grammar review."
+    },
+    {
+      question: "What skills do quick editing worksheets build?",
+      answer:
+        "They help students practice punctuation, grammar, capitalization, spelling, sentence correction, and proofreading."
+    },
+    {
+      question: "Are quick editing worksheets good for younger students?",
+      answer:
+        "Yes, shorter editing tasks are often easier for younger students because they feel more manageable and less overwhelming."
     }
   ],
 
@@ -1710,16 +1851,21 @@ export const seoPages: Record<string, SeoPage> = {
     "3rd-grade-editing-worksheets",
     "editing-worksheets-for-bell-work",
   ],
+
   category: "proofreading",
 },
 
 "short-editing-passages-with-errors": {
   title: "Short Editing Passages with Errors",
+
   description:
-    "Create short editing passages with grammar, punctuation, spelling, and capitalization errors for fast classroom practice.",
+    "Create short editing passages with grammar, punctuation, capitalization, and spelling mistakes students can correct for quick proofreading practice.",
+
   heading: "Short Editing Passages with Errors",
+
   intro:
-    "Short editing passages give students enough context to practice proofreading without turning the activity into a full writing assignment. They work well for warmups, test prep review, small groups, or quick skill checks.",
+    "Short editing passages help students practice proofreading in context without requiring a long writing assignment. Instead of correcting isolated sentences, students work through short paragraphs that include grammar, punctuation, capitalization, spelling, and sentence structure mistakes similar to the ones they make in everyday writing. These shorter passages are useful for warmups, homework, small group instruction, tutoring, test prep review, and independent grammar practice. Teachers often prefer short editing activities because students can complete meaningful proofreading work in a limited amount of time while still practicing careful rereading skills. Working with short passages also helps students build editing confidence before moving into longer proofreading assignments and full essay revision.",
+
   gradeLevel: "elementary and middle school",
   errorAmount: "low",
   errorTypes: "mixed",
@@ -1742,14 +1888,66 @@ export const seoPages: Record<string, SeoPage> = {
     }
   ],
 
+  commonMistakes: [
+    "Incorrect verb tense in narrative writing.",
+    "Subject-verb agreement errors.",
+    "Pronoun mistakes in compound subjects.",
+    "Missing punctuation between sentences.",
+    "Capitalization mistakes in longer passages."
+  ],
+
+  whyThisMatters:
+    "Students often understand grammar rules in isolation but struggle to apply them while reading full paragraphs. Short editing passages help students practice proofreading skills in realistic writing situations while still keeping the workload manageable. Repeated editing practice helps students become more careful and independent writers over time.",
+
+  classroomTips: [
+    "Use short passages before assigning longer writing tasks.",
+    "Have students circle mistakes before rewriting corrections.",
+    "Let students work with partners to compare edits.",
+    "Focus on one editing skill at a time for struggling students.",
+    "Use short proofreading passages during small group intervention."
+  ],
+
+  skillsCovered: [
+    "Proofreading in context",
+    "Grammar correction",
+    "Punctuation",
+    "Capitalization",
+    "Sentence editing",
+    "Writing revision"
+  ],
+
+  whenToUse: [
+    "Warmups",
+    "Small groups",
+    "Homework",
+    "Test prep review",
+    "Independent practice",
+    "Grammar intervention"
+  ],
+
+  difficultyNotes:
+    "Short editing passages should include enough mistakes to challenge students without making the paragraph difficult to read. Shorter passages are especially helpful for students building proofreading confidence or working on editing stamina.",
+
   faq: [
     {
       question: "What are short editing passages?",
-      answer: "They are brief paragraphs with errors that students correct for quick practice."
+      answer:
+        "Short editing passages are brief paragraphs with intentional grammar, punctuation, capitalization, and spelling mistakes students correct during proofreading practice."
     },
     {
-      question: "Why use shorter passages?",
-      answer: "They save time while still giving students meaningful proofreading practice."
+      question: "Why use shorter proofreading passages?",
+      answer:
+        "Shorter passages allow students to practice proofreading in context without becoming overwhelmed by long assignments."
+    },
+    {
+      question: "What skills do editing passages help students build?",
+      answer:
+        "Editing passages help students improve grammar, punctuation, sentence structure, capitalization, spelling, and overall proofreading ability."
+    },
+    {
+      question: "Are short editing passages good for classroom warmups?",
+      answer:
+        "Yes, short editing passages work well for warmups because students can complete meaningful proofreading practice in a short amount of time."
     }
   ],
 
@@ -1758,6 +1956,7 @@ export const seoPages: Record<string, SeoPage> = {
     "daily-editing-practice",
     "printable-editing-worksheets",
   ],
+
   category: "proofreading",
 },
 

@@ -41,37 +41,48 @@ export default function Header() {
           EditWorksheets
         </Link>
 
-        <nav className="flex items-center gap-4 text-sm">
-          {email ? (
-            <>
-              <span className="hidden text-neutral-600 sm:inline">
-                {email}
-              </span>
+   <nav className="flex items-center gap-4 text-sm">
+  <Link
+    href="/worksheets"
+    className="font-semibold text-neutral-700 hover:text-neutral-950"
+  >
+    Worksheets
+  </Link>
 
-              <Link
-                href="/dashboard"
-                className="rounded-full bg-neutral-950 px-4 py-2 font-bold text-white"
-              >
-                Dashboard
-              </Link>
+  <Link
+    href="/5th-grade-editing-passages"
+    className="hidden font-semibold text-neutral-700 hover:text-neutral-950 sm:inline"
+  >
+    Examples
+  </Link>
 
-              {/* SIGN OUT BUTTON */}
-              <button
-                onClick={handleSignOut}
-                className="text-sm font-semibold text-neutral-600 underline underline-offset-4 hover:text-neutral-950"
-              >
-                Sign out
-              </button>
-            </>
-          ) : (
-            <Link
-              href="/login"
-              className="rounded-full bg-neutral-950 px-4 py-2 font-bold text-white"
-            >
-              Sign up
-            </Link>
-          )}
-        </nav>
+  {email ? (
+    <>
+      <span className="hidden text-neutral-600 sm:inline">{email}</span>
+
+      <Link
+        href="/dashboard"
+        className="rounded-full bg-neutral-950 px-4 py-2 font-bold text-white"
+      >
+        Dashboard
+      </Link>
+
+      <button
+        onClick={handleSignOut}
+        className="text-sm font-semibold text-neutral-600 underline underline-offset-4 hover:text-neutral-950"
+      >
+        Sign out
+      </button>
+    </>
+  ) : (
+    <Link
+      href="/login"
+      className="rounded-full bg-neutral-950 px-4 py-2 font-bold text-white"
+    >
+      Sign up
+    </Link>
+  )}
+</nav>
       </div>
     </header>
   );

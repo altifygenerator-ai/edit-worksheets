@@ -26,28 +26,27 @@ export default function Hero({ title, description }: HeroProps) {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="#tool"
-              className="rounded-full bg-neutral-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-neutral-800"
-            >
-              Create a Worksheet
-            </Link>
+  <Link
+    href="#tool"
+    className="rounded-full bg-neutral-950 px-6 py-4 text-sm font-bold text-white transition hover:bg-neutral-800"
+  >
+    Create a Worksheet
+  </Link>
 
-            <Link href="/login">Sign up to save PDF credits</Link>
+  <Link
+    href="/worksheets"
+    className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
+  >
+    Browse worksheet types
+  </Link>
 
-            <Link
-              href="/seo/5th-grade-editing-passages"
-              className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
-            >
-              See example worksheets
-            </Link>
-            <Link
-  href="/worksheets"
-  className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
->
-  Browse all worksheet types
-</Link>
-          </div>
+  <Link
+    href="/5th-grade-editing-passages"
+    className="text-sm font-semibold text-neutral-700 underline underline-offset-4 hover:text-neutral-950"
+  >
+    See editing worksheet examples
+  </Link>
+</div>
 
           <div className="mt-8 flex flex-wrap gap-4 text-sm text-neutral-600">
             <span>✔ Printable PDFs</span>
